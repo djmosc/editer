@@ -28,7 +28,7 @@ get_header(); ?>
 							
 						</div>
 						<div class="bottom">
-							
+							<p class="grey small arial text-center">Competition <a href="#">Terms &amp; Conditions</a></p> 
 						</div>
 					</div><!-- .entry-content -->
 				</article><!-- #post-<?php the_ID(); ?> -->

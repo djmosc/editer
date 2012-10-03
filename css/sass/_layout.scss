@@ -961,8 +961,27 @@ body {
 	#content {
 		background: url(../images/bg_competition.jpg) no-repeat 0 0;
 		height: 1150px;
-		.post {
+		.page {
+			.page-content {
+				width: 565px;
+				padding: 70px 0 0 0;
+				margin: 0 auto;
 
+				> .top {
+					background: #fafafa;
+					padding: 10px 0 5px 0;
+				}
+
+				> .middle {
+					background: url(../images/bg_competition_form.png) no-repeat 0 0;
+					height: 250px;
+				}
+
+				> .bottom {
+					background: #fafafa;
+					padding: 2px 0;
+				}
+			}
 		}
 	}
 }
