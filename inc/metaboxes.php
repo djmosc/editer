@@ -9,7 +9,7 @@ function add_custom_boxes(){
 	$post_id = NULL;
 	if(isset($_GET['post'])){
 		$post_id = $_GET['post'];
-	} elseif(isset($_POST['post_ID'])	){
+	} elseif(isset($_POST['post_ID'])){
 		$post_id = $_POST['post_ID'];
 	}
 	$post = get_post($post_id);
@@ -18,6 +18,9 @@ function add_custom_boxes(){
 	if($post){
 		add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'post');
 		add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'ad');
+		if($post->post_parent == 0){
+			add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'product');
+		}
 		if(in_category(get_editer_option('hts_category_id'), $post_id)){
 			add_meta_box('hts_post_box', 'Hit the streets Fields', 'hts_post_input', 'post');
 		}

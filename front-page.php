@@ -20,12 +20,15 @@ get_header(); ?>
 		</div>
 		<div id="content" class="twelve column push-one alpha omega">
 			<?php 
+			$carousel_ary = array(0, 4, '');
+			
 			$posts_query = new WP_Query( array('posts_per_page' => 3, 'post_type' => array('post'), 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true, 'limit' => 3, 'category__not_in' => array(get_editer_option('hts_category_id'))));
 			$posts_position_ary = array(0, 2, 4);
 			$ads_query = new WP_Query( array('posts_per_page' => 2, 'post_type' => array('ad'), 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true, 'limit' => 2, 'orderby' => 'menu_order', 'order' => 'ASC' ));
 			$ads_position_ary = array(1, 3);
 			
-			$carousel_ary = array_fill(0, 4, '');
+			
+			
 			if ( $posts_query->have_posts() ) {
 				$i = 0;
 				while ( $posts_query->have_posts() ) { 
@@ -43,6 +46,21 @@ get_header(); ?>
 					$i++;
 				}
 			}
+
+			// Every monday
+			//if(date('N') == 1){
+				$products_query = new WP_Query( array('posts_per_page' => 1, 'post_parent' => '0', 'post_type' => array('product'), 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true, 'limit' => 1, 'orderby' => 'menu_order', 'order' => 'ASC' ));
+				$products_position_ary = array(0);
+				if ( $products_query->have_posts() ) {
+					$i = 0;
+					while ( $products_query->have_posts() ) { 
+						$products_query->the_post();
+						array_insert($carousel_ary, $post, $products_position_ary[$i]);
+						$i++;
+					}
+				}
+			//}
+
 
 			if ( !empty($carousel_ary) ) :
 
