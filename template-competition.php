@@ -21,8 +21,14 @@ get_header(); ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<div class="page-content">
-						<div class="white-bg clearfix">
+						<div class="top">	
 							<?php the_content(); ?>
+						</div>
+						<div class="middle">
+							
+						</div>
+						<div class="bottom">
+							
 						</div>
 					</div><!-- .entry-content -->
 				</article><!-- #post-<?php the_ID(); ?> -->
