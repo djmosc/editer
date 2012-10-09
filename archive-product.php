@@ -72,7 +72,7 @@ get_header(); ?>
 			<?php endif; ?>
 		</div>
 	</div><!-- #content -->
-	<div class="pagination clearfix">
+	<!--div class="pagination clearfix">
 		
 		<?php $next_post = get_the_adjacent_fukn_post('next', 'product', array(), 0); ?>
 		<?php if($next_post && $next_post->ID != $post->ID):?>
@@ -82,7 +82,8 @@ get_header(); ?>
 		<?php if($prev_post && $prev_post->ID != $post->ID):?>
 		<a href="<?php echo get_permalink($prev_post->ID);?>" class="left"><?php echo get_the_title($prev_post->ID) ?></a>
 		<?php endif; ?>
-	</div>
+	</div-->
+
 	<footer class="products-footer ">
 		<?php get_template_part('inc/share-links'); ?>
 		

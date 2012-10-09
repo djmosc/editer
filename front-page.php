@@ -48,8 +48,10 @@ get_header(); ?>
 			}
 
 			// Every monday
-			//if(date('N') == 1){
-				$products_query = new WP_Query( array('posts_per_page' => 1, 'post_parent' => '0', 'post_type' => array('product'), 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true, 'limit' => 1, 'orderby' => 'menu_order', 'order' => 'ASC' ));
+
+			if(date('N') == 1 || isset($_GET['dev'])){
+			//if(isset($_GET['dev'])){
+				$products_query = new WP_Query( array('posts_per_page' => 1, 'post_parent' => '0', 'post_type' => array('product'), 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true, 'limit' => 1 ));
 				$products_position_ary = array(0);
 				if ( $products_query->have_posts() ) {
 					$i = 0;
@@ -58,8 +60,10 @@ get_header(); ?>
 						array_insert($carousel_ary, $post, $products_position_ary[$i]);
 						$i++;
 					}
+					unset($carousel_ary[1]);
 				}
-			//}
+			}
+
 
 
 			if ( !empty($carousel_ary) ) :
@@ -68,7 +72,7 @@ get_header(); ?>
 			<div id="homepage-scroller" class="scroller" data-auto-scroll="true">
 				<div class="scroller-mask">
 					<?php foreach($carousel_ary as $post) :?>
-					<?php $url = ($post->post_type == 'post') ? get_permalink($post->ID) : get_post_meta($post->ID, 'external_url', true); ?>
+					<?php $url = ($post->post_type == 'post' || $post->post_type == 'product') ? get_permalink($post->ID) : get_post_meta($post->ID, 'external_url', true); ?>
 					<div class="scroll-item" data-id="<?php echo $post->ID;?>">
 						<div class="post">
 				        	<div class="thumbnail featured-image">
