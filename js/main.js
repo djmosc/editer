@@ -68,9 +68,9 @@ $(function(){
 
 	$('> p, > h1, > h2, > h3, > h4, > h5, > h6', $('#single .post-content')).each(function(){
 		if($('.size-large, .size-full', this).length !== 0){
-			$(this).addClass('large-image');
+			$(this).addClass('large-image clearfix');
 		} else if($('.size-medium', this).length > 1){
-			$(this).addClass('small-images');
+			$(this).addClass('small-images clearfix');
 		} else {
 			$(this).addClass('text');
 		}

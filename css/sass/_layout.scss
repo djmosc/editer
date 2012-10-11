@@ -470,10 +470,17 @@ body {
 				width: 616px;
 			}
 
+
+			.large-image,
+			.small-images {
+				
+			}
+
 			.size-large {
 
 			}
-			
+
+
 			.size-large,
 			.size-full {
 				display: block;
@@ -481,7 +488,8 @@ body {
 			}
 
 			.size-medium {
-				margin-bottom: 30px
+				margin-top: 30px;
+				margin-bottom: 30px;
 			}
 
 			.size-medium.alignleft {
@@ -865,7 +873,8 @@ body {
 		}
 
 		.size-medium {
-			margin-bottom: 30px
+			margin-top: 30px;
+			margin-bottom: 30px;
 		}
 
 		.size-medium.alignleft {
