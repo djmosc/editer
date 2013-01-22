@@ -33,5 +33,6 @@ if ( $custom_query->have_posts() ) :
 		<?php endwhile; ?>
 	</div>
 </div>
+<?php wp_reset_query(); ?>
 <?php wp_reset_postdata(); ?>
 <?php endif; ?>

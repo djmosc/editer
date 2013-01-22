@@ -16,6 +16,7 @@ function add_custom_boxes(){
 	$template_file = get_post_meta($post_id,'_wp_page_template', true);
  	
 	if($post){
+		add_meta_box('post_options_box', 'Post Options', 'post_options_input', 'post');
 		add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'post');
 		add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'ad');
 		if($post->post_parent == 0){
@@ -61,6 +62,29 @@ function load_externals(){
 	
 	<!--script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/admin.js"></script-->
     <?php
+}
+
+/**************Post Options*****************/
+
+
+function post_options_input(){
+	global $post;
+	$tumblr_post_id = get_post_meta($post->ID, 'tumblr_post_id', true);
+	?>
+	<table style="width: 300px;">
+		
+		<tbody>
+			<tr>
+				<td>
+					<label>Tumblr Post ID:</label>
+				</td>
+				<td>
+					<input type="text" value="<?php echo $tumblr_post_id; ?>" name="tumblr_post_id" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<?php
 }
 
 /**************Homepage Image*****************/
@@ -169,6 +193,7 @@ function post_fields_save($post_id) {
 		update_post_meta($post_id, 'homepage_image_id', $_POST['homepage_image_id']);
 		update_post_meta($post_id, 'top_content', $_POST['top_content']);
 		update_post_meta($post_id, 'bottom_content', $_POST['bottom_content']);
+		update_post_meta($post_id, 'tumblr_post_id', $_POST['tumblr_post_id']);
 	}
 }
 

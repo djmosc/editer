@@ -47,6 +47,11 @@ function theme_options_do_page() {
 						<input id="editer_theme_options[hts_category_id]" class="regular-text" type="text" name="editer_theme_options[hts_category_id]" value="<?php esc_attr_e( $options['hts_category_id'] ); ?>" />
 					</td>
 				</tr>
+				<tr valign="top"><th scope="row"><?php _e( 'Featured Homepage Post ID', 'editer' ); ?></th>
+					<td>
+						<input id="editer_theme_options[featured_post_id]" class="regular-text" type="text" name="editer_theme_options[featured_post_id]" value="<?php esc_attr_e( $options['featured_post_id'] ); ?>" />
+					</td>
+				</tr>
 
 			</table>
 
@@ -64,6 +69,7 @@ function theme_options_do_page() {
 function theme_options_validate( $input ) {
 	
 	$input['hts_category_id'] = wp_filter_nohtml_kses( $input['hts_category_id'] );
+	$input['featured_post_id'] = wp_filter_nohtml_kses( $input['featured_post_id'] );
 
 
 	return $input;

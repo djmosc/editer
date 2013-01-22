@@ -144,6 +144,6 @@ get_header(); ?>
 	<?php endif; ?>
 	</div><!-- #content -->
 </section><!-- #single -->
-
+<?php $sidebar_id = 'post'; ?>
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -103,7 +103,7 @@ $.fn.scroller = function(options) {
 			$('.scroller-pagination li', scroller).removeClass('current');
 			$('.scroller-pagination li a[data-id='+nextItem.data('id')+']', scroller).parent().addClass('current');
 			
-			scroller.animate({height: nextItem.outerHeight()});
+			scroller.animate({height: nextItem.outerHeight()}, speed, easing);
 			scroller.trigger('onChange', [nextItem]);
 			
 		}

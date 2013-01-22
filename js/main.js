@@ -65,12 +65,12 @@ $(function(){
 		$('.posts').hide();
 		$('.posts[data-display-type='+displayType+']').fadeIn();
 	});
-
+	
 	$('> p, > h1, > h2, > h3, > h4, > h5, > h6', $('#single .post-content')).each(function(){
 		if($('.size-large, .size-full', this).length !== 0){
-			$(this).addClass('large-image clearfix');
+			$(this).addClass('large-image');
 		} else if($('.size-medium', this).length > 1){
-			$(this).addClass('small-images clearfix');
+			$(this).addClass('small-images');
 		} else {
 			$(this).addClass('text');
 		}

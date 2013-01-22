@@ -181,8 +181,13 @@ function post_types_init(){
 
 	register_post_type('embed_page',$args);
 
-	global $wp_rewrite;
-	$wp_rewrite->flush_rules();
+
+	global $wp; 
+	add_rewrite_rule('archive/category/([^/]*)/page/([0-9]+)','index.php?pagename=archive&category_name=$matches[1]&paged=$matches[2]','top');
+    add_rewrite_rule('archive/category/([^/]*)','index.php?pagename=archive&category_name=$matches[1]','top');
+  
+	//global $wp_rewrite;
+	//$wp_rewrite->flush_rules();
 }
 
 add_filter('post_updated_messages', 'custom_post_updated_messages');

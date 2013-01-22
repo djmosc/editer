@@ -12,7 +12,6 @@
  * @since editer 1.0
  */
 
-
 if ( ! function_exists( 'editer_setup' ) ):
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -42,6 +41,8 @@ function editer_setup() {
 	require( get_template_directory() . '/inc/widgets/ad-widget.php' );
 
 	require( get_template_directory() . '/inc/widgets/related-posts-widget.php' );
+
+	require( get_template_directory() . '/inc/widgets/tumblr-widget.php' );
 
 
 
@@ -154,6 +155,24 @@ function editer_widgets_init() {
 	register_sidebar( array(
 		'name' => __( 'Editor Sidebar', 'editer' ),
 		'id' => 'editor',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title no-margin text-center didot-italic">',
+		'after_title' => '</h3>',
+	) );
+
+	register_sidebar( array(
+		'name' => __( 'Post Sidebar', 'editer' ),
+		'id' => 'post',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title no-margin text-center didot-italic">',
+		'after_title' => '</h3>',
+	) );
+
+	register_sidebar( array(
+		'name' => __( 'Index Sidebar', 'editer' ),
+		'id' => 'index',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="widget-title no-margin text-center didot-italic">',

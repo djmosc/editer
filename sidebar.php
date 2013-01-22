@@ -7,5 +7,8 @@
  */
 ?>
 <div id="sidebar" class="widget-area five column omega push-one" role="complementary">
-	<?php dynamic_sidebar( 'default' );  ?>
+	<?php 
+	global $sidebar_id;
+	$sidebar = (isset($sidebar_id)) ? $sidebar_id : 'default';
+	dynamic_sidebar( $sidebar );  ?>
 </div><!-- #sidebar -->

@@ -933,7 +933,7 @@ blockquote {
 .tooltip {
 	position: absolute;
 	background: #161616;
-	top: 25px;
+	bottom: -40px;
 	border: 1px solid #2f2f2f;
 	left: 50%;
 	width: 170px;
@@ -971,6 +971,24 @@ blockquote {
 	input[type=text]{
 		margin: 0;
 		padding: 5px;
+	}
+}
+
+.tab-navigation {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	@extend .clearfix;
+
+	li {
+		background: #FFFFFF;
+		float: left;
+		color: #a40000;
+		font-family:'Novecento W00 Wide Bold', Helvetica, Arial, sans-serif;
+		font-size: 10px;
+		padding: 10px 20px;
+		@include border-top-left-radius(4px);
+		@include border-top-right-radius(4px);
 	}
 }
 /* =============================================================================
@@ -1107,12 +1125,45 @@ blockquote {
 				}
 			}
 		}
+
+		.menu-categories-container {
+			.menu {
+				li {
+					&.current-menu-item a {
+						color: inherit;
+					}
+				}
+			}
+		}
 	}
 	
 	.widget_weekly_edit {
 		.title {
 			line-height: 26px;
 			font-size: 26px;
+		}
+	}
+
+	.widget_tumblr {
+		.widget-title {
+			font: 0/0 a;
+		    text-shadow: none;
+		    color: transparent;
+		    width: 163px;
+		    height: 82px;
+		    display: block;
+		    background: url(../images/title_behind_the_scenes.png) no-repeat;
+		    position: relative;
+		    margin: 0 auto;
+		    top: 24px;
+		}
+
+		.tumblr-post {
+			.thumbnail {
+				img {
+					width: 100%;
+				}
+			}
 		}
 	}
 }
@@ -1229,6 +1280,68 @@ blockquote {
 
 .share-link-btn {
 	background: url(../images/icon_link.png) no-repeat 2px center;
+}
+
+
+.share-email-btn-big,
+.share-twitter-btn-big,
+.share-facebook-btn-big,
+.share-link-btn-big {
+	font-family: "NovecentoW00-WideDemiBo", arial, helvetica, sans-serif;
+	font-size: 10px;
+	width: 43px;
+	padding: 43px 0 25px 0;
+	margin: 0 25px 5px 25px;
+	display: inline-block;
+	text-decoration: none !important;
+	text-align: center;
+	color: #6d6e71;
+	vertical-align: top;
+	position: relative;
+	line-height: 16px;
+
+	span {
+		width: 100px;
+		position: absolute;
+		text-align: center;
+		left: 50%;
+		margin-left: -50px;
+	}
+}
+
+.share-email-btn-big {
+	background: url(../images/icon_email_big.png) no-repeat left top;
+	&:hover {
+		color: #a40000;
+	}
+}
+
+.share-twitter-btn-big {
+	background: url(../images/icon_twitter_big.png) no-repeat left top;
+	&:hover {
+		color: #00acee;
+	}
+}
+
+.share-facebook-btn-big {
+	background: url(../images/icon_facebook_big.png) no-repeat left top;
+	&:hover {
+		color: #3b5998;
+	}
+}
+
+.share-link-btn-big {
+	background: url(../images/icon_link_big.png) no-repeat left top;
+	&:hover {
+		color: #a40000;
+	}
+}
+
+.share-email-btn-big:hover,
+.share-twitter-btn-big:hover,
+.share-facebook-btn-big:hover,
+.share-link-btn-big:hover {
+	background-position: right top;
 }
 
 .twitter-btn,
@@ -1534,6 +1647,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 				.gfield_description {
 					font-size: 10px;
 				 	font-style: italic;
+				 	text-align: right;
 
 					&.validation_message {
 						color: #a40000;
