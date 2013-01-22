@@ -24,6 +24,15 @@
       "initialSize" : 1406,
       "fileType" : 8192
     },
+    "\/sidebar.php" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/sidebar.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
+    },
     "\/images\/bg_competition_form.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -52,15 +61,6 @@
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/category.php",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
-    },
-    "\/sidebar.php" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/sidebar.php",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
@@ -111,16 +111,14 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/images\/logo_editer_header.png" : {
+    "\/style.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/logo_editer_header.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/logo_editer_header.png",
-      "initialSize" : 2404,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/style.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/images\/icon_twitter_big.png" : {
       "ignoreWasSetByUser" : 0,
@@ -142,14 +140,16 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/style.css" : {
+    "\/images\/logo_editer_header.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/style.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "inputAbbreviatedPath" : "\/images\/logo_editer_header.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/logo_editer_header.png",
+      "initialSize" : 2404,
+      "fileType" : 8192
     },
     "\/images\/icon_email.png" : {
       "ignoreWasSetByUser" : 0,
@@ -190,8 +190,8 @@
       "fileType" : 2048
     },
     "\/js\/plugins\/jquery.easing.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/js\/plugins\/jquery.easing.js",
@@ -260,17 +260,6 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/js\/plugins\/jquery.easing.min.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/plugins\/jquery.easing.min.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/plugins\/jquery.easing.min.min.js",
-      "fileType" : 64
-    },
     "\/footer.php" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -279,17 +268,6 @@
       "inputAbbreviatedPath" : "\/footer.php",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
-    },
-    "\/js\/plugins\/jquery.fancybox.min.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/plugins\/jquery.fancybox.min.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/plugins\/jquery.fancybox.min.min.js",
-      "fileType" : 64
     },
     "\/css\/jquery.fancybox.css" : {
       "ignoreWasSetByUser" : 0,
@@ -382,17 +360,6 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/images\/fancybox_sprite.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/images\/fancybox_sprite.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/images\/fancybox_sprite.png",
-      "initialSize" : 1362,
-      "fileType" : 8192
-    },
     "\/images\/title_competition_share.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -404,21 +371,23 @@
       "initialSize" : 1805,
       "fileType" : 8192
     },
+    "\/images\/fancybox_sprite.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/images\/fancybox_sprite.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/images\/fancybox_sprite.png",
+      "initialSize" : 1362,
+      "fileType" : 8192
+    },
     "\/inc\/widgets\/tumblr-widget.php" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/inc\/widgets\/tumblr-widget.php",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
-    },
-    "\/single-product.php" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/single-product.php",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
@@ -432,8 +401,8 @@
       "fileType" : 2048
     },
     "\/js\/plugins\/swfobject.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/js\/plugins\/swfobject.js",
@@ -441,6 +410,15 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/plugins\/swfobject.min.js",
       "fileType" : 64
+    },
+    "\/single-product.php" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/single-product.php",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
     },
     "\/content.php" : {
       "ignoreWasSetByUser" : 0,
@@ -483,6 +461,15 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
+    "\/css\/admin.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/css\/admin.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/css\/sass\/style.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -505,15 +492,6 @@
       "outputAbbreviatedPath" : "\/images\/border_dotted_02.png",
       "initialSize" : 994,
       "fileType" : 8192
-    },
-    "\/css\/admin.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/css\/admin.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
     },
     "\/template-competition.php" : {
       "ignoreWasSetByUser" : 0,
@@ -575,17 +553,6 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/js\/plugins\/-jquery.scroller.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/plugins\/-jquery.scroller.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/plugins\/-jquery.scroller.min.js",
-      "fileType" : 64
-    },
     "\/inc\/shortcodes.php" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -612,17 +579,6 @@
       "inputAbbreviatedPath" : "\/index.php",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
-    },
-    "\/js\/libs\/modenizr.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/libs\/modenizr.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/libs\/modenizr.min.js",
-      "fileType" : 64
     },
     "\/inc\/widgets\/subscribe-widget.php" : {
       "ignoreWasSetByUser" : 0,
@@ -727,25 +683,14 @@
       "fileType" : 8192
     },
     "\/js\/libs\/jquery.min.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/js\/libs\/jquery.min.js",
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/libs\/jquery.min.min.js",
-      "fileType" : 64
-    },
-    "\/js\/plugins\/jquery.scroller.min.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/plugins\/jquery.scroller.min.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/plugins\/jquery.scroller.min.min.js",
       "fileType" : 64
     },
     "\/inc\/widgets\/recent-posts-widget.php" : {
@@ -756,17 +701,6 @@
       "inputAbbreviatedPath" : "\/inc\/widgets\/recent-posts-widget.php",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
-    },
-    "\/js\/libs\/modernizr.min.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/libs\/modernizr.min.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/libs\/modernizr.min.min.js",
-      "fileType" : 64
     },
     "\/images\/arrow_competition.png" : {
       "ignoreWasSetByUser" : 0,
@@ -789,8 +723,8 @@
       "fileType" : 2048
     },
     "\/js\/plugins\/jquery.scroller.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/js\/plugins\/jquery.scroller.js",
@@ -884,8 +818,8 @@
       "fileType" : 2048
     },
     "\/js\/main.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/js\/main.js",
@@ -904,8 +838,8 @@
       "fileType" : 2048
     },
     "\/js\/libs\/modernizr.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
       "inputAbbreviatedPath" : "\/js\/libs\/modernizr.js",
@@ -931,17 +865,6 @@
       "inputAbbreviatedPath" : "\/inc\/widgets\/calendar-widget.php",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
-    },
-    "\/js\/plugins\/jquery.prettyPhoto.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/plugins\/jquery.prettyPhoto.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/plugins\/jquery.prettyPhoto.min.js",
-      "fileType" : 64
     },
     "\/images\/icon_link_big.png" : {
       "ignoreWasSetByUser" : 0,
