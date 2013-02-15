@@ -41,8 +41,9 @@
 	<?php do_action( 'before' ); ?>
 	<header id="header" class="site-header" role="banner">
 		<div class="container">
-			<div class="center span five alpha omega">
-				<h1 class="no-margin"><a class="ir logo" href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			<div class="center span three alpha omega text-center">
+				<h1 class="no-margin text-center"><a class="ir logo" href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<p class="didot-italic description"><?php bloginfo('description'); ?></p>
 			</div>
 		</div>
 		<div class="container">

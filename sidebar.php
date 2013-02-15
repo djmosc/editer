@@ -6,7 +6,7 @@
  * @since editer 1.0
  */
 ?>
-<div id="sidebar" class="widget-area five column omega push-one" role="complementary">
+<div id="sidebar" class="widget-area span two alpha omega" role="complementary">
 	<?php 
 	global $sidebar_id;
 	$sidebar = (isset($sidebar_id)) ? $sidebar_id : 'default';

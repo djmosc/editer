@@ -10,10 +10,16 @@
 ?>
 
 	</div><!-- #main .site-main -->
-
+	<div id="subscribe">
+		<div class="inner container">
+			<div class="span ten">
+				<?php gravity_form(2); ?>
+			</div>
+		</div>
+	</div>
 	<footer id="footer" class="site-footer" role="contentinfo">
 		<div class="inner container">
-			<div class="alpha five column">
+			<div class="alpha two span">
 				<h1 class="no-margin">
 					<a class="ir logo" href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 				</h1>
@@ -21,7 +27,7 @@
 					<?php wp_nav_menu( array( 'theme_location' => 'footer', 'container' => false ) ); ?>
 				</nav><!-- .site-navigation .main-navigation -->
 			</div>
-			<div class="omega nineteen column alpha">
+			<div class="omega eight span alpha">
 				<nav role="navigation" class="site-navigation main-navigation">
 					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'clearfix', 'container' => false ) ); ?>
 				</nav><!-- .site-navigation .main-navigation -->

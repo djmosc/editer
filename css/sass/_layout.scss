@@ -7,7 +7,6 @@ body {
 	background: #FFFFFF;
 	font-family: 'Georgia';
 	font-size: 14px;
-	min-width: 1080px;
 }
 
 #wrap {
@@ -15,20 +14,29 @@ body {
 }
 
 #header {
-	padding: 48px 0 0 0;
+	padding: 40px 0 0 0;
 	position: relative;
 	z-index: 1000;
+	border-top: 20px solid #000;
 
 	.logo {
 		background: url(../images/logo_editer_header.png) no-repeat;
 		width: 221px;
 		height: 39px;
+		margin-right: -12px;
 		text-indent: -9999px;
-		display: block;
+		display: inline-block;
+	}
+
+	.description {
+		margin: 10px 0 0 0;
 	}
 
 	.main-navigation { 
 		padding: 0;
+		margin: 40px 0 0 0;
+		border-top: 1px solid #e5e5e5;
+		border-bottom: 10px solid #000;
 
 		> ul {
 			
@@ -37,7 +45,7 @@ body {
 			
 			> li {
 			 	float: left;
-				margin: 0 0 0 45px;
+				margin: 0 15px;
 				padding: 0;
 			 	position: relative;
 
@@ -47,9 +55,9 @@ body {
 
 			 	> a {
 			 		display: inline-block;
-					padding: 24px 0 10px 0;
+					padding: 10px 0;
 					font-family: 'NovecentoW00-WideDemiBo', Helvetica, Arial, sans-serif;
-			 		font-size: 11px;
+			 		font-size: 10px;
 			 		letter-spacing: 1px;
 			 		border-top: 3px solid #FFFFFF;
 				 	@include transition-property(all);
@@ -76,8 +84,8 @@ body {
 			 	.sub-menu {
 			 		position: absolute;
 			 		background: #161616;
-			 		top: 50px;
-			 		border: 1px solid #2f2f2f;
+			 		top: 35px;
+			 		//border: 1px solid #2f2f2f;
 			 		left: 50%;
 			 		width: 170px;
 			 		margin: 0 0 0 -90px;
@@ -99,19 +107,7 @@ body {
 					    width: 0;
 					    margin-left: -3px;
 					}
-					&:before {
-					    border-color: #2f2f2f transparent;
-					    border-style: solid;
-					    border-width: 0 7px 7px 7px;
-					    top: -8px;
-					    content: "";
-					    display: block;
-					    left: 50%;
-					    position: absolute;
-					    width: 0;
-					    margin-left: -4px;
-					}
-
+					
 			 		li {
 			 			margin: 0;
 			 			padding: 0 10px;
@@ -139,12 +135,84 @@ body {
 		
 			
 #main {
-	padding: 40px 10px;
+	padding: 0 10px;
 
 }
 		
 #sidebar {
+	margin: 0 0 0 5%;
+}
 
+
+#subscribe {
+	background: #f4f4f4;
+
+	.gform_wrapper {
+		padding: 10px 10px 10px 180px;
+
+		form {
+			@extend .clearfix;
+		}
+
+		.gform_heading {
+			margin:  0;
+			padding: 0 0 26px 0;
+
+			.gform_title {
+				margin: 0;
+				text-transform: uppercase;
+			}
+
+			.gform_description {
+
+			}
+		}
+
+		.gform_body {
+			float: left;
+			width: 80%;
+			margin: -16px 0 0 0;
+
+			.gform_fields {
+				@extend .clearfix;
+
+				.gfield {
+					float: left;
+					width: 31.7%;
+					margin: 0 10px 0 0;
+				}
+			}
+		}
+
+		.gform_footer {
+			float: left;
+			width: 20%;
+
+			.button {
+				width: auto;
+				margin: 0;
+				padding: 0 50px;
+				height: 32px;
+				line-height: 31px;
+				position: relative;
+				background: #000;
+				text-transform: uppercase;
+				font-size: 10px;
+
+				&:after {
+					border-top: 8px solid transparent;
+					border-bottom: 8px solid transparent;
+					border-left: 8px solid #000;
+				    top: 0px;
+				    content: "";
+				    display: block;
+				    position: absolute;
+				    width: 0;
+				    right: -8px;
+				}
+			}
+		}
+	}
 }
 
 	
@@ -193,7 +261,7 @@ body {
 			> li {
 				float: left;
 				float: left;
-				margin: 0 0 0 45px;
+				margin: 0 0 0 38px;
 			 	position: relative;
 				a {
 					display: inline-block;
@@ -383,6 +451,10 @@ body {
 
 
 #front-page {
+
+	#homepage-sidebar {
+		margin: 0 5% 0 0;
+	}
 	#homepage-scroller {
 		height: 500px;
 
