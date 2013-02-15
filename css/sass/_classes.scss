@@ -321,42 +321,12 @@ a.purple:hover {
 	position: fixed;
 }
 
-.left, .alignleft {
-	float: left;
-}
-
-.right, .alignright {
-	float: right;
-}
-
-canvas.left, canvas.alignleft,
-canvas.right, canvas.alignright {
-	float: none;
-}
-
-.aligncenter,
-.center {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.full-width {
-	width: 100%;
-}
-
-.full-height {
-	height: 100%;
-}
-
 .valign-middle {
 	vertical-align: middle;	
 }
 
 .dropshadow {
-	-moz-box-shadow: 3px 3px 4px #666;
-	-webkit-box-shadow: 3px 3px 4px #666;
-	box-shadow: 3px 3px 4px #666;
+	@include box-shadow(3px 3px 4px #666 );
 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#666666')";
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#666666');
 }
@@ -1445,28 +1415,26 @@ blockquote {
 	 *zoom: 1;
 }
 
-.column {
+.span {
 	min-height: 1px;
 	padding-left: 10px;
 	padding-right: 10px;
 	float: left;
 	display: block;
 	position: relative;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	@include box-sizing(border-box);
 	z-index: 100;
 }
 
-.alpha.column {
+.alpha.span {
 	padding-left: 0px;
 }
 
-.omega.column {
+.omega.span {
 	padding-right: 0px;
 }
  
-$columns: (one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eightteen, nineteen, twenty, twentyone, twentytwo, twentythree, twentyfour);
+$columns: (one, two, three, four, five, six, seven, eight, nine, ten);
 $total_columns: length($columns);
 
 @mixin columns($width){
@@ -1477,7 +1445,7 @@ $total_columns: length($columns);
 			$total_width: ($width * $i);
 		}
 		
-		.column.#{$column} {
+		.span.#{$column} {
 			width: ($total_width);
 		}
 
@@ -1492,30 +1460,37 @@ $total_columns: length($columns);
 	}
 }
 
-@include columns(44px);
+@include columns(100% / $total_columns);
 
 
+.left, .alignleft {
+	float: left;
+}
 
-// @include media(1) {
-// 	.container {
-// 		width: auto;
-// 	}
-// 	@include columns(100% / $total_columns);
-// }
+.right, .alignright {
+	float: right;
+}
 
+canvas.left, canvas.alignleft,
+canvas.right, canvas.alignright {
+	float: none;
+}
 
-// @include media(2) {
-// 	.container {
-// 		width: auto;
-// 	}
-	
-// 	.column {
-// 		padding-left: 0;
-// 		padding-right: 0;
-// 	}
+.aligncenter,
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 
-// 	@include columns(auto);
-// }
+.full-width {
+	width: 100%;
+}
+
+.full-height {
+	height: 100%;
+}
+
 
 /* =============================================================================
    Table

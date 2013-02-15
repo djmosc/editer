@@ -231,8 +231,11 @@ if ( $custom_query->have_posts() && 1 == 1) :
 				<div class="scroll-item" data-id="<?php echo get_the_ID(); ?>">
 					<div class="inner">
 						<h3 class="title didot-italic"><a href="<?php the_permalink(); ?>"><?php the_title();?></a></h3>
-						<div class="excerpt">
+						<div class="excerpt bold">
 							<?php the_excerpt(); ?>
+						</div>
+						<div class="content">
+							<?php the_content(); ?>
 						</div>
 						<p class="small">
 							<a class="red novecento-bold uppercase" href="<?php the_permalink(); ?>">See <?php the_title(); ?>'s Edits</a>

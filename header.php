@@ -41,11 +41,16 @@
 	<?php do_action( 'before' ); ?>
 	<header id="header" class="site-header" role="banner">
 		<div class="container">
-			<h1 class="no-margin column five alpha omega"><a class="ir logo" href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<nav role="navigation" class="site-navigation main-navigation column nineteen alpha omega">
+			<div class="center span five alpha omega">
+				<h1 class="no-margin"><a class="ir logo" href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			</div>
+		</div>
+		<div class="container">
+			<nav role="navigation" class="site-navigation main-navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'clearfix', 'container' => false ) ); ?>
 			</nav><!-- .site-navigation .main-navigation -->
 		</div>
+
 	</header><!-- #masthead .site-header -->
 
 	<div id="main" class="site-main container">

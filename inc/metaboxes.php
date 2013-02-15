@@ -17,8 +17,6 @@ function add_custom_boxes(){
  	
 	if($post){
 		add_meta_box('post_options_box', 'Post Options', 'post_options_input', 'post');
-		add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'post');
-		add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'ad');
 		if($post->post_parent == 0){
 			add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'product');
 		}

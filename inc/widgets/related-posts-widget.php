@@ -31,13 +31,14 @@ class Related_Posts extends WP_Widget {
 				$tag_ids[] = $individual_tag->term_id;
 			}
 		}
-		$args = array(  
-			'tag__in' => $tag_ids,  
-			'post__not_in' => array($post->ID),  
-			'showposts' => 3,  // Number of related posts that will be shown.  
-			'caller_get_posts'=>1  
-		);
-
+		if(isset($tags__ids)){
+			$args = array(  
+				'tag__in' => $tag_ids,  
+				'post__not_in' => array($post->ID),  
+				'showposts' => 3,  // Number of related posts that will be shown.  
+				'caller_get_posts'=>1  
+			);
+		}
 		$custom_query = new WP_Query($args);
 		?>
 
