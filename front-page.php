@@ -82,13 +82,6 @@ get_header(); ?>
 			<a class="prev-btn"></a>
 			<a class="next-btn"></a>
 		</div>
-		<ul class="scroller-pagination">
-			<?php foreach($carousel_ary as $post) : ?>
-			<?php if ($post): ?>
-			<li><a data-id="<?php echo $post->ID;?>"></a></li>
-			<?php endif; ?>
-			<?php endforeach; ?>
-		</ul>
 	</div><!-- #homepage-scroller -->
 	<?php endif; ?>
 

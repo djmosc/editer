@@ -56,7 +56,8 @@ body {
 			 	> a {
 			 		display: inline-block;
 					padding: 10px 0;
-					font-family: 'NovecentoW00-WideDemiBo', Helvetica, Arial, sans-serif;
+					@extend .avenir-bold;
+					text-transform: uppercase;
 			 		font-size: 10px;
 			 		letter-spacing: 1px;
 			 		border-top: 3px solid #FFFFFF;
@@ -118,7 +119,7 @@ body {
 			 				color: #FFFFFF;
 			 				display: block;
 			 				text-align: center;
-			 				font-family: 'Novecento W00 Medium', Helvetica, Arial, sans-serif;
+							@extend .avenir-bold;
 			 				letter-spacing: 1px;
 			 				font-size: 10px;
 
@@ -135,7 +136,7 @@ body {
 		
 			
 #main {
-	padding: 0 10px;
+	padding: 0 10px 70px 10px;
 
 }
 		
@@ -161,6 +162,12 @@ body {
 			.gform_title {
 				margin: 0;
 				text-transform: uppercase;
+
+				&:nth-word(1){
+					color: #7e0606;
+					font-family: 'Didot W01 Italic', Georgia;
+					font-weight: normal;
+				} 
 			}
 
 			.gform_description {
@@ -266,7 +273,7 @@ body {
 				a {
 					display: inline-block;
 					padding: 0;
-					font-family: 'NovecentoW00-WideDemiBo', Helvetica, Arial, sans-serif;
+					@extend .avenir-demibold;
 			 		font-size: 11px;
 			 		letter-spacing: 1px;
 				}

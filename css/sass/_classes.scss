@@ -47,11 +47,44 @@
 	}
 }
 
+.didot {
+	font-family: 'Didot W01 Roman', Georgia;
+	font-weight: normal;
+}
 
-.novecento-bold,
-.novecento-demibold {
+.didot-italic {
+	font-family: 'Didot W01 Italic', Georgia;
+	font-weight: normal;
+}
+
+.novecento-bold {
+	font-family: 'Novecento W00 Wide Bold', Arial, Helvetica, sans-serif;
+	font-weight: normal;
 	letter-spacing: 1px;
 }
+
+.novecento-demibold {
+	font-family: 'NovecentoW00-WideDemiBo', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	letter-spacing: 1px;
+}
+
+.novecento-medium {
+	font-family: 'Novecento W00 Medium', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+
+.avenir {
+	font-family: 'Avenir LT W01 55 Roman', Arial, Helvetica, sans-serif;
+}
+
+
+.avenir-bold {
+	font-family: 'Avenir LT W02 95 Black', Arial, Helvetica, sans-serif;
+	letter-spacing: 1px;
+}
+
+
 
 a {
 	text-decoration: none;
@@ -151,7 +184,7 @@ p {
 	line-height: 15px;
 }
 
-p.small {
+.small {
 	margin: 4px 0;
 }
 
@@ -943,190 +976,221 @@ blockquote {
    Widgets
    ========================================================================== */
 
-.widget-area {
-	.widget {
-		margin: 0 0 30px 0;
+
+.widget {
+	margin: 0 0 24px 0;
+}
+
+.widget_search {
+	margin-bottom: 10px;
+}
+
+.widget_post {
+	.post {
+		margin: 20px 0;
+
+		.post-meta {
+			padding: 0 15px;
+
+			.author {
+				margin: 10px 0;
+			}
+		}
+
+		.footer {
+			> .inner {
+				padding: 4px 10px 6px 10px;
+			}
+		}
+	}
+}
+
+
+.widget_related_posts {
+	> .title {
+		line-height: 18px;
+	}
+	
+	.post {
+		margin: 8px 0 0 0;
+
+		.post-meta {
+			padding: 0 15px;
+		}
+
+		.footer {
+			> .inner {
+				padding: 4px 10px 6px 10px;
+			}
+		}
+	}
+}
+
+.widget_text {
+
+	.widget-title {
+		background: #000;
+		color: #FFF;
+		position: relative;
+		font-size: 10px;
+		text-transform: uppercase;
+		line-height: 26px;
+
+		&:after {
+			border-color: #161616 transparent;
+		    border-style: solid;
+		    border-width: 6px 6px 0 6px;
+		    bottom: -6px;
+		    content: "";
+		    display: block;
+		    left: 50%;
+		    position: absolute;
+		    width: 0;
+		    margin-left: -3px;
+		}
+
+		.textwidget {
+			margin: 10px 0 0 0;
+		}
 	}
 
-	.widget_search {
-		margin-bottom: 10px;
+	.tumblr-btn,
+	.pinterest-btn {
+		margin-bottom: 0;
+	}
+}
+
+
+.widget_twitter_feed {
+
+	> .title {
+		line-height: 18px;
 	}
 
-	.widget_post {
-		.post {
+	#twitter-feed {
+		 list-style: none;
+		 padding: 0;
+		 margin: 0;
+
+		.tweet {
+			list-style: none;
 			margin: 20px 0;
 
-			.post-meta {
-				padding: 0 15px;
-			}
+			.tweet-text {
+				background-color: #f5f5f5;
+				border: 1px solid #C6C6C6;
+				@include border-radius(2px);
+				padding: 10px;
+				position: relative;
+				margin: 0 0 20px 0;
 
-			.footer {
-				padding: 4px 0 6px 0;
-
-				.read-more-btn {
-					padding: 0 10px;
-				}
-			}
-		}
-	}
-
-
-	.widget_related_posts {
-		> .title {
-			line-height: 18px;
-		}
-		
-		.post {
-			margin: 8px 0 0 0;
-
-			.post-meta {
-				padding: 0 15px;
-			}
-
-			.footer {
-				padding: 4px 0 6px 0;
-			}
-		}
-	}
-
-	.widget_text {
-
-		.tumblr-btn,
-		.pinterest-btn {
-			margin-bottom: 0;
-		}
-	}
-
-	
-	.widget_twitter_feed {
-
-		> .title {
-			line-height: 18px;
-		}
-
-		#twitter-feed {
-			 list-style: none;
-			 padding: 0;
-			 margin: 0;
-
-			.tweet {
-				list-style: none;
-				margin: 20px 0;
-
-				.tweet-text {
-					background-color: #f5f5f5;
-					border: 1px solid #C6C6C6;
-					@include border-radius(2px);
-					padding: 10px;
-					position: relative;
-					margin: 0 0 20px 0;
-
-					&:before {
-						content: "";
-						position: absolute;
-						bottom: -15px;
-						left: 36px;
-						border-width: 14px 14px 0 0;
-						border-style: solid;
-						border-color: #C6C6C6 transparent;
-						display: block;
-						width: 0;	
-					}
-
-					&:after  {
-						content: "";
-						position: absolute;
-						bottom: -12px;
-						left: 37px;
-						border-width: 12px 12px 0 0;
-						border-style: solid;
-						border-color: #EFEFEF transparent;
-						display: block;
-						width: 0;
-					}
+				&:before {
+					content: "";
+					position: absolute;
+					bottom: -15px;
+					left: 36px;
+					border-width: 14px 14px 0 0;
+					border-style: solid;
+					border-color: #C6C6C6 transparent;
+					display: block;
+					width: 0;	
 				}
 
-				.tweet-meta {
-					line-height: 12px;
+				&:after  {
+					content: "";
+					position: absolute;
+					bottom: -12px;
+					left: 37px;
+					border-width: 12px 12px 0 0;
+					border-style: solid;
+					border-color: #EFEFEF transparent;
+					display: block;
+					width: 0;
 				}
-
 			}
+
+			.tweet-meta {
+				line-height: 12px;
+			}
+
 		}
 	}
+}
 
 
-	.widget_nav_menu {
-		background: url(../images/border_striped.png);
-		padding: 10px;
+.widget_nav_menu {
+	background: url(../images/border_striped.png);
+	padding: 10px;
 
-		> div {
-			background: #FFFFFF;
-		}
+	> div {
+		background: #FFFFFF;
+	}
 
-		.menu {
-			padding: 16px 20px;
-			margin: 0;
+	.menu {
+		padding: 16px 20px;
+		margin: 0;
+		list-style: none;
+
+		li {
+			margin: 3px 0;
 			list-style: none;
+			
+			a {
+				color: #000000;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 11px;
+				font-weight: bold;
+			}
 
+			&.current-menu-item a,
+			a:hover {
+				color: #7E0606;
+			}
+		}
+	}
+
+	.menu-categories-container {
+		.menu {
 			li {
-				margin: 3px 0;
-				list-style: none;
-				
-				a {
-					color: #000000;
-					font-family: Arial, Helvetica, sans-serif;
-					font-size: 11px;
-					font-weight: bold;
-				}
-
-				&.current-menu-item a,
-				a:hover {
-					color: #7E0606;
-				}
-			}
-		}
-
-		.menu-categories-container {
-			.menu {
-				li {
-					&.current-menu-item a {
-						color: inherit;
-					}
-				}
-			}
-		}
-	}
-	
-	.widget_weekly_edit {
-		.title {
-			line-height: 26px;
-			font-size: 26px;
-		}
-	}
-
-	.widget_tumblr {
-		.widget-title {
-			font: 0/0 a;
-		    text-shadow: none;
-		    color: transparent;
-		    width: 163px;
-		    height: 82px;
-		    display: block;
-		    background: url(../images/title_behind_the_scenes.png) no-repeat;
-		    position: relative;
-		    margin: 0 auto;
-		    top: 24px;
-		}
-
-		.tumblr-post {
-			.thumbnail {
-				img {
-					width: 100%;
+				&.current-menu-item a {
+					color: inherit;
 				}
 			}
 		}
 	}
 }
+
+.widget_weekly_edit {
+	.title {
+		line-height: 26px;
+		font-size: 26px;
+	}
+}
+
+.widget_tumblr {
+	.widget-title {
+		font: 0/0 a;
+	    text-shadow: none;
+	    color: transparent;
+	    width: 163px;
+	    height: 82px;
+	    display: block;
+	    background: url(../images/title_behind_the_scenes.png) no-repeat;
+	    position: relative;
+	    margin: 0 auto;
+	    top: 24px;
+	}
+
+	.tumblr-post {
+		.thumbnail {
+			img {
+				width: 100%;
+			}
+		}
+	}
+}
+
+
 /* =============================================================================
    Lists
    ========================================================================== */
@@ -1155,7 +1219,9 @@ blockquote {
 	font-family:'Novecento W00 Wide Bold', Helvetica, Arial, sans-serif;
 	text-transform: uppercase;
 	font-size: 9px;
-	padding: 0 5px;
+	padding: 0 10px;
+	vertical-align: middle;
+	margin-top: -2px;
 	height: 16px;
 	line-height: 16px;
 	display: inline-block;

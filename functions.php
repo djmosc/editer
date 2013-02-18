@@ -125,6 +125,9 @@ add_action( 'after_setup_theme', 'editer_setup' );
  * @since editer 1.0
  */
 function editer_widgets_init() {
+
+	/********************** Sidebars ***********************/
+
 	register_sidebar( array(
 		'name' => __( 'Default Sidebar', 'editer' ),
 		'id' => 'default',
@@ -139,7 +142,7 @@ function editer_widgets_init() {
 		'id' => 'homepage',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title no-margin text-center didot-italic">',
+		'before_title' => '<h3 class="widget-title no-margin text-center avenir-bold">',
 		'after_title' => '</h3>',
 	) );
 
@@ -176,6 +179,29 @@ function editer_widgets_init() {
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
 		'before_title' => '<h3 class="widget-title no-margin text-center didot-italic">',
+		'after_title' => '</h3>',
+	) );
+
+	register_sidebar( array(
+		'name' => __( 'Category Sidebar', 'editer' ),
+		'id' => 'category',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title no-margin text-center didot-italic">',
+		'after_title' => '</h3>',
+	) );
+
+
+
+	/********************** Content ***********************/
+
+
+	register_sidebar( array(
+		'name' => __( 'Homepage Content', 'editer' ),
+		'id' => 'homepage_content',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title no-margin text-center avenir-bold">',
 		'after_title' => '</h3>',
 	) );
 }
@@ -273,5 +299,21 @@ if ( ! function_exists( 'array_insert' )) {
 		}
 		$array = array_merge($array);
 		return $array;
+	}
+}
+
+function get_the_editor($user_id = 0){
+	$args = array( 
+		'post_type' => 'editor',
+		'order' => 'ASC', 
+		'posts_per_page' => -1
+	);
+	
+	$custom_query = new WP_Query($args);
+	$posts = $custom_query->get_posts();
+	foreach($posts as $post) {
+		if(get_post_meta($post->ID, 'user_id', true) == $user_id){
+			return $post;
+		}
 	}
 }
