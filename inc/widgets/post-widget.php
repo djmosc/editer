@@ -28,6 +28,11 @@ class Post extends WP_Widget {
             echo '</select></label>';
         endif;
         echo '</p>';
+
+        echo '<p><label>'._('Featured:');
+        echo ' <input class="checkbox" value="1" type="checkbox" id="'.$this->get_field_id( 'featured' ).'" name="'. $this->get_field_name('featured').'" ';
+        echo (isset($instance['featured']) && $instance['featured']  == 1) ?'checked="checked"':'';
+        echo ' /></label></p>';
        
     }
 
@@ -39,6 +44,8 @@ class Post extends WP_Widget {
         global $post;
         $args['offset'] = $instance['offset'];
         $args['postid'] = $instance['postid'];
+        $args['featured'] = (isset($instance['featured'])) ? $instance['featured'] : 0;
+
         
         echo $args['before_widget'];
         $options = array('posts_per_page' => 1, 'no_found_rows' => true, 'post_type' => array('post'), 'post_status' => 'publish', 'ignore_sticky_posts' => true);
@@ -56,7 +63,7 @@ class Post extends WP_Widget {
             while ( $custom_query->have_posts() ) : $custom_query->the_post();
                 $editor = get_the_editor($post->post_author); 
             ?>
-                <div class="post border">
+                <div class="post border <?php if( $args['featured'] ) echo 'featured'; ?>">
                     <div class="thumbnail featured-image">
                         <a href="<?php the_permalink();?>">
                             <?php

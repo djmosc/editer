@@ -682,7 +682,6 @@ blockquote {
 	position: relative;
 
 	> a {
-		position: relative;
 		max-width: 100%;
 		display:block;
 		// overflow: hidden;
@@ -987,7 +986,34 @@ blockquote {
 
 .widget_post {
 	.post {
-		margin: 20px 0;
+
+		&.featured {
+			border-top: 5px solid #000;
+			margin-top: 20px;
+			.featured-image {
+				padding: 0 20px;
+				margin-top: -26px;
+
+				a {
+					position: relative;
+					
+					&:after {
+						position: absolute;
+						width: 8px;
+						content: '';
+						height: 95%;
+						display: block;
+						background: url(../images/shadow.png) no-repeat top right;
+						background-size: 100% 100%;
+						top: 2%;
+						right: -9px;
+					}
+				}
+				img {
+					border: 1px solid #e5e5e5;
+				}
+			}
+		}
 
 		.post-meta {
 			padding: 0 15px;
