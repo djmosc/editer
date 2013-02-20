@@ -144,6 +144,24 @@ $(function(){
 
 		});
 	}
+	var editors = $('#editors');
+	$('.category-navigation a', editors).on('click', function(e){
+		e.preventDefault();
+		var categoryNavigation = $('.category-navigation', editors),
+			scroller = $('.scroller', editors),
+			scrollerPagination = $('.scroller-pagination', scroller),
+			categoryId = $(this).data('category-id');
+
+		$('> li', scrollerPagination).hide();
+		//$('> li a[data-category-id='+categoryId+']', scrollerPagination).parent().fadeIn();
+		console.log($('li .category-btn[data-category-id='+ categoryId +']'));
+		
+		$('li', categoryNavigation).removeClass('current');	
+		$('li .category-btn[data-category-id='+ categoryId +']', categoryNavigation).addClass('current');	
+
+		return false;
+	});
+
 	$(window).resize(function(){
 		onResize();					  
 	});

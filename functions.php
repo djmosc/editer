@@ -125,7 +125,8 @@ add_action( 'after_setup_theme', 'editer_setup' );
 
 
 if(function_exists('register_field')) {
-	register_field('Users_field', dirname(__File__) . '/inc/fields/users_field/users_field.php');
+	register_field('Users_field', dirname(__File__) . '/inc/fields/users/users_field.php');
+	register_field('Categories_field', dirname(__File__) . '/inc/fields/categories/categories_field.php');
 }
 /**
  * Register widgetized area and update sidebar with default widgets

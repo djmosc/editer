@@ -336,6 +336,10 @@ body {
 						@extend .avenir-bold;
 						letter-spacing: 1px;
 					}
+
+					&.current a {
+						color: #a40000;
+					}
 				}
 			}
 		}

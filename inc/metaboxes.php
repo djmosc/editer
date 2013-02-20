@@ -26,8 +26,6 @@ function add_custom_boxes(){
 		add_action('save_post', 'post_fields_save');
 		
 		
-		// add_meta_box('editor_box', 'Editor Fields', 'editor_input', 'editor');
-		// add_action('save_post', 'editor_fields_save');
 		
 		if($post->post_parent){
 			add_meta_box('product_box', 'Product Fields', 'product_input', 'product');
@@ -36,16 +34,6 @@ function add_custom_boxes(){
 
 		add_meta_box('ad_box', 'Ad Fields', 'ad_input', 'ad');
 		add_action('save_post', 'ad_fields_save');
-
-		
-		// if (in_array($template_file, array('default', 'case-studies.php', 'work.php'))){
-		// 	add_meta_box('default_box', 'Default Fields', 'default_fields_input', 'page');
-		// 	add_action('save_post', 'default_fields_save');
-		// }
-		
-		// add_meta_box('work_fields_box', 'Work Fields', 'work_fields_input', 'work');
-		// add_action('save_post', 'work_fields_save');
-
 		
 	}
 }
