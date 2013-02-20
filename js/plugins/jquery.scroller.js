@@ -160,7 +160,7 @@ $.fn.scroller = function(options) {
 		}
 
 		$(window).load(function(){
-			scroller.animate({height: currItem.outerHeight()});
+			scroller.animate({height: currItem.outerHeight()}, 500, 'easeInOutQuad');
 		});
 		
 		firstLoad = false;

@@ -22,7 +22,7 @@ $(function(){
 	$('a[href^=#]').click(function(){
 		var target = $($(this).attr('href'));
 		var offsetTop = (target.length != 0) ? target.offset().top : 0;
-		$('body, html').animate({scrollTop: offsetTop}, 500);
+		$('body, html').animate({scrollTop: offsetTop}, 500, 'easeInOutQuad');
 		return false;
 	});
 
@@ -159,7 +159,7 @@ $.fn.preload = function() {
 function loadPopup(url){
 	
 	$('.lightbox-overlay').fadeIn('slow', function(){
-		$('html,body').animate({scrollTop: $('.lightbox-overlay').offset().top}, 800);
+		$('html,body').animate({scrollTop: $('.lightbox-overlay').offset().top}, 800, 'easeInOutQuad');
 		$('.lightbox').html('<div class="loader align-center"><img src="'+themeUrl+'/images/misc/ajax_loader.gif" /></div>');
 		$('.lightbox').delay(100).fadeIn();
 		$.get(url, function(data) {
@@ -183,31 +183,29 @@ function onResize(){
 }
 
 function onEditorChange(scroller, nextItem){
-	var scrollWidth = scroller.width();
-	var halfWidth = scrollWidth / 2;
-	var pagination = $('.scroller-pagination', scroller);
-	var paginationWidth = paginationWidth();
-	var nextId = nextItem.data('id');
-	var btn = $('li a[data-id="'+nextId+'"]', pagination);
-	var btnPosition = btn.position();
-	var btnLeft = btnPosition.left + (btn.width() / 2);
-	
+	var scrollWidth = scroller.width(),
+		halfWidth = scrollWidth / 2,
+		pagination = $('.scroller-pagination', scroller),
+		paginationWidth = function(){
+			var width = 0;
+			$('li', pagination).each(function(){
+				width += $(this).width();
+			});
+			return width;	
+		}(),
+		nextId = nextItem.data('id'),
+		btn = $('li a[data-id="'+nextId+'"]', pagination),
+		btnPosition = btn.position(),
+		btnLeft = btnPosition.left + (btn.width() / 2);
+		left = 0;
+
 	if( btnLeft > halfWidth && btnLeft < (paginationWidth - halfWidth) ){
-		pagination.animate({left: -(btnLeft)+ halfWidth});
+		left = -(btnLeft)+ halfWidth;
 	} else if (btnLeft > (paginationWidth - halfWidth) ) {
-		pagination.animate({left: -paginationWidth + scrollWidth});
-	} else {
-		pagination.animate({left: 0});
+		left = -paginationWidth + scrollWidth;
 	}
 
-	function paginationWidth(){
-		var width = 0;
-		$('li', pagination).each(function(){
-			width += $(this).width();
-		});
-		return width;
-	}
-
+	pagination.animate({left: left}, 500, 'easeInOutQuad');
 }
 
 if (!(window.console && console.log)) {

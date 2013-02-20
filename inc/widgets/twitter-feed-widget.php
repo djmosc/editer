@@ -27,7 +27,8 @@ class Twitter_Feed extends WP_Widget {
 		$args['title'] = $instance['title'];
 		
 		$args['username'] = (isset($instance['username'])) ? $instance['username'] : 'editerdotcom';
-		echo $args['before_widget'] . '<h5 class="thick-border-bottom black uppercase novecento-bold small title">' . $args['title'] . '</h5>';
+		echo $args['before_widget'] . '<div class="border">';
+		echo '<h5 class="text-center uppercase avenir-bold small widget-title border-bottom"><a href="http://twitter.com/'.$args['username'].'" target="_blank" class="black">' . $args['title'] . '</a></h5>';
 		?>
         <script>
         	$(function(){
@@ -38,15 +39,15 @@ class Twitter_Feed extends WP_Widget {
 
 					for (i in tweets) {
 						var tweet = tweets[i];
-						output.push('<li class="tweet">'+
-										'<div class="tweet-text arial small">'+tweet.text+'</div>'+
-										'<div class="clearfix">'+
-											'<div class="tweet-authorphoto left">'+
-												'<img width="36" src="'+tweet.user.profile_image_url +'" alt="'+''+'">'+
-											'</div>'+
-											'<div class="tweet-meta right">'+
-												'<span class="tweet-time tiny grey arial">6 days ago by </span><br />'+
-												'<a class="tweet-author tiny red arial bold" href="http://twitter.com/'+tweet.user.screen_name+'">'+tweet.user.screen_name+'</a>'+
+						output.push('<li class="tweet clearfix">'+
+										'<div class="tweet-authorphoto span two omega">'+
+											'<img width="36" src="'+tweet.user.profile_image_url +'" alt="'+''+'">'+
+										'</div>'+
+										'<div class="tweet-content span eight">'+
+											'<div class="tweet-text arial small">'+tweet.text+'</div>'+
+											'<div class="tweet-meta">'+
+												'<span class="tweet-time tiny grey arial">'+relative_time(tweet.created_at)+' </span><br />'+
+												//'<a class="tweet-author tiny red arial bold" href="http://twitter.com/'+tweet.user.screen_name+'">'+tweet.user.screen_name+'</a>'+
 											'</div>'+
 										'</div>'+
 									'</li>');
@@ -54,13 +55,41 @@ class Twitter_Feed extends WP_Widget {
 
 					$("#twitter-feed").html(output.join(''));
 				});
-        	})
+        	});
+
+			function relative_time(timeValue) {
+				var values = timeValue.split(" ");
+				timeValue = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
+				var parsedDate = Date.parse(timeValue);
+				var relativeTo = (arguments.length > 1) ? arguments[1] : new Date();
+				var delta = parseInt((relativeTo.getTime() - parsedDate) / 1000);
+				delta = delta + (relativeTo.getTimezoneOffset() * 60);
+
+				var r = '';
+				if (delta < 60) {
+					r = 'a minute ago';
+				} else if(delta < 120) {
+					r = 'couple of minutes ago';
+				} else if(delta < (45*60)) {
+					r = (parseInt(delta / 60)).toString() + ' minutes ago';
+				} else if(delta < (90*60)) {
+					r = 'an hour ago';
+				} else if(delta < (24*60*60)) {
+					r = '' + (parseInt(delta / 3600)).toString() + ' hours ago';
+				} else if(delta < (48*60*60)) {
+					r = '1 day ago';
+				} else {
+					r = (parseInt(delta / 86400)).toString() + ' days ago';
+				}
+
+				return r;
+			}
         </script>
         <ul id="twitter-feed">
 	        	
         </ul>
             
-		<?php echo $args['after_widget'];
+		<?php echo '</div>'.$args['after_widget'];
 	}
 }
 

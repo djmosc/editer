@@ -34,6 +34,10 @@ function editer_setup() {
 
 	require( get_template_directory() . '/inc/widgets/twitter-feed-widget.php' );
 
+	require( get_template_directory() . '/inc/widgets/pinterest-widget.php' );
+
+	require( get_template_directory() . '/inc/widgets/facebook-widget.php' );
+
 	require( get_template_directory() . '/inc/widgets/sub-menu-widget.php' );
 
 	require( get_template_directory() . '/inc/widgets/weekly-edit-widget.php' );
@@ -119,6 +123,10 @@ function editer_setup() {
 endif; // editer_setup
 add_action( 'after_setup_theme', 'editer_setup' );
 
+
+if(function_exists('register_field')) {
+	register_field('Users_field', dirname(__File__) . '/inc/fields/users_field/users_field.php');
+}
 /**
  * Register widgetized area and update sidebar with default widgets
  *

@@ -26,8 +26,8 @@ function add_custom_boxes(){
 		add_action('save_post', 'post_fields_save');
 		
 		
-		add_meta_box('editor_box', 'Editor Fields', 'editor_input', 'editor');
-		add_action('save_post', 'editor_fields_save');
+		// add_meta_box('editor_box', 'Editor Fields', 'editor_input', 'editor');
+		// add_action('save_post', 'editor_fields_save');
 		
 		if($post->post_parent){
 			add_meta_box('product_box', 'Product Fields', 'product_input', 'product');
@@ -195,89 +195,6 @@ function post_fields_save($post_id) {
 	}
 }
 
-
-
-/**************Editor Fields*****************/
-
-
-function editor_input(){
-	global $post;
-	$user_id = get_post_meta($post->ID, 'user_id', true);
-	$website_url = get_post_meta($post->ID, 'website_url', true);
-	$twitter_url = get_post_meta($post->ID, 'twitter_url', true);
-	$facebook_url = get_post_meta($post->ID, 'facebook_url', true);
-	?>
-    <input type="hidden" name="editor_fields_nonce" value="<?php echo wp_create_nonce('editor_fields');?>" />
-	
-	<p>
-		<label>User: <?php
-
-		$wp_user_query = new WP_User_Query(array('orderby' => 'display_name'));
-		$users = $wp_user_query->get_results();
-		if (!empty($users)) {
-		    echo '<select name="user_id">';
-		    echo '<option value="0">--Not a user--</option>';
-		    foreach ($users as $user) {
-		    	if(user_can($user->ID, 'edit_posts')){
-		    		$user_info = get_userdata($user->ID);
-			        echo '<option value="'.$user->ID.'"';
-			        if($user_id == $user->ID) echo ' selected';
-			        echo '>'.$user_info->display_name.'</option>';
-			    }
-		    }
-		    echo '</select>';
-		} else {
-		    echo 'No users found';
-		}
-		?>
-	</p>
-
-	<table style="width: 300px;">
-		<thead>
-			<tr>
-				<th colspan="2"><h4 style="text-align: left; margin: 0;">Social Links</h4></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					<label>Website Url:</label>
-				</td>
-				<td>
-					<input type="text" value="<?php echo $website_url; ?>" name="website_url" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Twitter Username: </label>
-				</td>
-				<td>
-					<input type="text" value="<?php echo $twitter_url; ?>" name="twitter_url" placeholder="e.g: @UserName" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Facebook Url:</label>
-				</td>
-				<td>
-					<input type="text" value="<?php echo $facebook_url; ?>" name="facebook_url" />
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<?php
-}
-
-function editor_fields_save($post_id) {
-	if(isset($_POST['editor_fields_nonce'])){
-		if (!wp_verify_nonce($_POST['editor_fields_nonce'], 'editor_fields')) return $post_id;
-		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
-		update_post_meta($post_id, 'user_id', $_POST['user_id']);
-		update_post_meta($post_id, 'website_url', $_POST['website_url']);
-		update_post_meta($post_id, 'twitter_url', $_POST['twitter_url']);
-		update_post_meta($post_id, 'facebook_url', $_POST['facebook_url']);
-	}
-}
 
 /**************Product Fields*****************/
 

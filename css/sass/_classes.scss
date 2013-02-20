@@ -1015,6 +1015,15 @@ blockquote {
 			}
 		}
 
+		&.large {
+			.footer {
+				> .inner {
+					padding-top: 10px;
+					padding-bottom: 12px;
+				}
+			}
+		}
+
 		.post-meta {
 			padding: 0 15px;
 
@@ -1024,6 +1033,8 @@ blockquote {
 		}
 
 		.footer {
+			margin-top: 10px;
+
 			> .inner {
 				padding: 4px 10px 6px 10px;
 			}
@@ -1089,9 +1100,12 @@ blockquote {
 
 .widget_twitter_feed {
 
-	> .title {
-		line-height: 18px;
+	margin-bottom: 8px;
+	
+	.widget-title  {
+		padding: 5px 0;
 	}
+
 
 	#twitter-feed {
 		 list-style: none;
@@ -1100,39 +1114,10 @@ blockquote {
 
 		.tweet {
 			list-style: none;
-			margin: 20px 0;
+			padding: 10px 0;
+			border-bottom: 1px solid #C6C6C6;
 
 			.tweet-text {
-				background-color: #f5f5f5;
-				border: 1px solid #C6C6C6;
-				@include border-radius(2px);
-				padding: 10px;
-				position: relative;
-				margin: 0 0 20px 0;
-
-				&:before {
-					content: "";
-					position: absolute;
-					bottom: -15px;
-					left: 36px;
-					border-width: 14px 14px 0 0;
-					border-style: solid;
-					border-color: #C6C6C6 transparent;
-					display: block;
-					width: 0;	
-				}
-
-				&:after  {
-					content: "";
-					position: absolute;
-					bottom: -12px;
-					left: 37px;
-					border-width: 12px 12px 0 0;
-					border-style: solid;
-					border-color: #EFEFEF transparent;
-					display: block;
-					width: 0;
-				}
 			}
 
 			.tweet-meta {
@@ -1216,6 +1201,55 @@ blockquote {
 	}
 }
 
+.widget_pinterest {
+	margin-bottom: 8px;
+	.widget-title  {
+		padding: 5px 0;
+		position: relative;
+		.pin {
+			z-index: 100;
+			position: absolute;
+			top:-16px;
+			width: 133px;
+			height: 34px;
+			left: 50%;
+			margin-left: -130px;
+			background: url(../images/pin.png) no-repeat;
+		}
+
+		a {
+			position: relative;
+			z-index: 200;
+		}
+	}
+
+	#pinterest {
+		ul {
+			padding: 0;
+			margin: 0;
+
+			li {
+				list-style: none;
+				padding: 0;
+				margin: 10px 0;
+				padding: 0 10px;
+			}
+		}
+	}
+}
+
+.widget_facebook {
+	margin-bottom: 8px;
+	> .inner {
+		padding: 6px;
+
+		> .inner {
+			padding: 10px;
+			border-color: #f6f6f6;
+		}
+	}
+}
+
 
 /* =============================================================================
    Lists
@@ -1248,8 +1282,8 @@ blockquote {
 	padding: 0 10px;
 	vertical-align: middle;
 	margin-top: -2px;
-	height: 16px;
-	line-height: 16px;
+	height: 20px;
+	line-height: 20px;
 	display: inline-block;
 	text-decoration: none !important;
 	&:hover {
@@ -1262,15 +1296,15 @@ blockquote {
 	}
 
 	&:after {
-		border-top: 8px solid transparent;
-		border-bottom: 8px solid transparent;
-		border-left: 8px solid #a40000;
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent;
+		border-left: 10px solid #a40000;
 	    top: 0px;
 	    content: "";
 	    display: block;
 	    position: absolute;
 	    width: 0;
-	    right: -8px;
+	    right: -10px;
 	}
 
 	&.big {
