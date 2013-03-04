@@ -43,6 +43,7 @@ class Ad extends WP_Widget {
     }
 
     function widget($args, $instance) {
+        global $post;
         $args['title'] = $instance['title'];
         $args['postid'] = $instance['postid'];
         $args['featured'] = (isset($instance['featured'])) ? $instance['featured'] : 0;
@@ -64,7 +65,7 @@ class Ad extends WP_Widget {
                     <div class="thumbnail featured-image">
                         <a href="<?php echo get_post_meta(get_the_ID(), 'external_url', true);?>" <?php if(get_post_meta($post->ID, 'new_tab', true)) echo 'target="_blank"'; ?>>
                             <?php 
-                            $image_id = get_post_thumbnail_id(get_the_ID());
+                            $image_id = get_post_thumbnail_id($post->ID);
                             $image = wp_get_attachment_image_src( $image_id, 'custom_thumbnail' );
                             ?>
                             <img src="<?php echo $image[0]?>" <?php if($args['featured']) echo 'width="188"'; ?> />

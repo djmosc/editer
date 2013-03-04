@@ -31,12 +31,12 @@ class Related_Posts extends WP_Widget {
 				$tag_ids[] = $individual_tag->term_id;
 			}
 		}
-		if(isset($tags__ids)){
+		if(isset($tags_ids)){
 			$args = array(  
 				'tag__in' => $tag_ids,  
 				'post__not_in' => array($post->ID),  
 				'showposts' => 3,  // Number of related posts that will be shown.  
-				'caller_get_posts'=>1  
+				'ignore_sticky_posts'=>1  
 			);
 		}
 		$custom_query = new WP_Query($args);
@@ -54,7 +54,7 @@ class Related_Posts extends WP_Widget {
 					$image_id = get_post_thumbnail_id(get_the_ID());
 					$image = wp_get_attachment_image_src( $image_id, 'thumbnail' );
 					?>
-					<img src="<?php echo $image[0]?>" />
+					<img src="<?php echo $image[0]?>" class="scale" />
 				</a>
 				<?php get_template_part( 'inc/category'); ?>
 			</div>
@@ -68,8 +68,10 @@ class Related_Posts extends WP_Widget {
         <?php
         $i++;
         endwhile;
+        wp_reset_query();
+		wp_reset_postdata();
+        else:
         ?>
-        <?php else: ?>
         <p>No posts found</p>
         <?php endif; ?>
 <?php 	echo $args['after_widget'];

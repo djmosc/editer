@@ -24,7 +24,7 @@ if ( ! function_exists( 'editer_setup' ) ):
  */
 function editer_setup() {
 
-	require( get_template_directory() . '/inc/post_types.php' );
+	require( get_template_directory() . '/inc/custom_post_type.php' );
 
 	require( get_template_directory() . '/inc/metaboxes.php' );
 
@@ -48,8 +48,15 @@ function editer_setup() {
 
 	require( get_template_directory() . '/inc/widgets/tumblr-widget.php' );
 
+	require( get_template_directory() . '/inc/widgets/tumblr-post-widget.php' );
 
+	require( get_template_directory() . '/inc/widgets/category-image-widget.php' );
 
+	require( get_template_directory() . '/inc/widgets/category-sub-navigation-widget.php' );
+
+	require( get_template_directory() . '/inc/widgets/editor-widget.php' );
+
+	require( get_template_directory() . '/inc/widgets/shop-widget.php' );
 
 	require( get_template_directory() . '/inc/options.php' );
 	/**
@@ -82,13 +89,12 @@ function editer_setup() {
 	add_image_size( 'custom_large', 530, 650, true);
 	add_image_size( 'custom_medium', 380, 250, true);
 	add_image_size( 'custom_thumbnail', 210, 9999);
+	add_image_size( 'gallery_thumbnail', 100, 160, true);
+	add_image_size( 'slide', 790, 350, true);
 
 	add_filter('jpeg_quality', function($arg){return 100;});
 
-	/**
-	 * Add support for the Aside Post Formats
-	 */
-	add_theme_support( 'post-formats', array( 'gallery' ) );
+	//add_theme_support( 'post-formats', array( 'gallery' ) );
 
 	add_filter('next_posts_link_attributes', 'posts_link_next_class');
 	function posts_link_next_class() {
@@ -115,9 +121,112 @@ function editer_setup() {
 			if(in_array($value[0] != NULL?$value[0]:"" , $restricted)) unset($menu[key($menu)]);
 		}
 	}
+
+	add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10, 3 );
+
+	function remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
+	    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+	    return $html;
+	}
+
 	add_action('admin_menu', 'remove_menus');
 
 	add_filter('widget_text', 'do_shortcode');
+
+
+	$slide = new Custom_Post_Type( 'Slide', 
+   		array(
+   			'rewrite' => array( 'slug' => 'slides'),
+    		'capability_type' => 'post',
+			'publicly_queryable' => false,
+    		'has_archive' => true, 
+    		'hierarchical' => false,
+    		'menu_position' => null,
+    		'supports' => array('title', 'editor', 'thumbnail', 'page-attributes')
+   		)
+   	);
+
+	$gallery = new Custom_Post_Type( 'Gallery', 
+   		array(
+   			'rewrite' => array( 'slug' => 'galleries'),
+    		'capability_type' => 'post',
+			'publicly_queryable' => false,
+    		'has_archive' => true, 
+    		'hierarchical' => false,
+    		'menu_position' => null,
+    		'supports' => array('title', 'editor', 'page-attributes'),
+    		'plural' => 'Galleries'
+   		)
+   	);
+
+	$editor = new Custom_Post_Type( 'Editor', 
+   		array(
+   			'rewrite' => array( 'slug' => 'editors'),
+    		'capability_type' => 'post',
+			'publicly_queryable' => true,
+    		'has_archive' => true, 
+    		'hierarchical' => false,
+    		'menu_position' => null,
+    		'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes')
+   		)
+   	);
+
+	$shop = new Custom_Post_Type( 'Shop', 
+   		array(
+   			'rewrite' => array( 'slug' => 'shopping'),
+    		'capability_type' => 'post',
+			'publicly_queryable' => true,
+    		'has_archive' => true, 
+    		'hierarchical' => false,
+    		'menu_position' => null,
+    		'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes')
+   		)
+   	);
+
+   	$shop->add_taxonomy('Shop Category', array('hierarchical' => true), array('plural' => 'Shop Categories'));
+
+	$product = new Custom_Post_Type( 'Product', 
+   		array(
+   			'rewrite' => array( 'slug' => 'products'),
+    		'capability_type' => 'post',
+			'publicly_queryable' => true,
+    		'has_archive' => true,
+    		'hierarchical' => true,
+    		'menu_position' => null,
+    		'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes')
+   		)
+   	);
+
+	$ad = new Custom_Post_Type( 'Ad', 
+   		array(
+   			'rewrite' => array( 'slug' => 'ads'),
+    		'capability_type' => 'post',
+			'publicly_queryable' => false,
+    		'has_archive' => true, 
+    		'hierarchical' => false,
+    		'menu_position' => null,
+    		'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'page-attributes')
+   		)
+   	);
+
+	$embed_page = new Custom_Post_Type( 'Embed Page', 
+   		array(
+   			'rewrite' => array( 'slug' => 'embedded-pages'),
+    		'capability_type' => 'post',
+			'publicly_queryable' => false,
+    		'has_archive' => true, 
+    		'hierarchical' => false,
+    		'menu_position' => null,
+    		'supports' => array('title', 'editor')
+   		)
+   	);
+
+
+
+   	add_rewrite_rule('archive/category/([^/]*)/page/([0-9]+)','index.php?pagename=archive&category_name=$matches[1]&paged=$matches[2]','top');
+    add_rewrite_rule('archive/category/([^/]*)','index.php?pagename=archive&category_name=$matches[1]','top');
+  
+
 
 }
 endif; // editer_setup
@@ -151,7 +260,7 @@ function editer_widgets_init() {
 		'id' => 'homepage',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget' => '</aside>',
-		'before_title' => '<h3 class="widget-title no-margin text-center avenir-bold">',
+		'before_title' => '<h3 class="widget-title no-margin text-center novecento-bold">',
 		'after_title' => '</h3>',
 	) );
 
@@ -200,6 +309,14 @@ function editer_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 
+	register_sidebar( array(
+		'name' => __( 'Shop Sidebar', 'editer' ),
+		'id' => 'shop',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title no-margin text-center didot-italic">',
+		'after_title' => '</h3>',
+	) );
 
 
 	/********************** Content ***********************/
@@ -213,21 +330,33 @@ function editer_widgets_init() {
 		'before_title' => '<h3 class="widget-title no-margin text-center avenir-bold">',
 		'after_title' => '</h3>',
 	) );
+
+	register_sidebar( array(
+		'name' => __( 'Category Content', 'editer' ),
+		'id' => 'category_content',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title no-margin text-center avenir-bold">',
+		'after_title' => '</h3>',
+	) );
 }
 add_action( 'widgets_init', 'editer_widgets_init' );
 
 
 
 if ( ! function_exists( 'get_top_level_category' )) {
-	function get_top_level_category($id){
-		$category = get_category($id);
-		$parent_category = NULL;
-		if($category->category_parent != 0){
-			$parent_category = get_top_level_category($category->category_parent );
-		} else {
-			$parent_category = get_category($category->cat_ID);
-		}
-		return $parent_category;
+	function get_top_level_category($id, $taxonomy = 'category'){
+		$term = get_top_level($taxonomy, $id);
+		$term_id = ($term) ? $term : $id;
+		return get_term_by( 'id', $term_id, $taxonomy);
+	}
+}
+
+
+if ( ! function_exists( 'get_top_level' )) {
+	function get_top_level($object, $id){
+		$terms = get_ancestors($id, $object);
+		return (!empty($terms)) ? $terms[count($terms) - 1] : null;
 	}
 }
 
@@ -324,5 +453,21 @@ function get_the_editor($user_id = 0){
 		if(get_post_meta($post->ID, 'user_id', true) == $user_id){
 			return $post;
 		}
+	}
+}
+
+if ( ! function_exists( 'get_latest_post' )) {
+	function get_latest_post() {
+		$posts = get_posts(array('posts_per_page' => 1));
+		return $posts[0];
+	}
+}
+
+if ( ! function_exists( 'get_limited_content' )) {
+	function get_limited_content($limit) {
+		$content = get_the_content();
+		$content = strip_shortcodes($content);
+		$content = strip_tags($content);
+		return substr($content, 0, $limit).'...';
 	}
 }

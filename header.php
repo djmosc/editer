@@ -28,7 +28,7 @@
     
     <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/libs/modernizr.min.js"></script>
     <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/libs/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/plugins/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/plugins/jquery.easing.js"></script>
     <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/plugins/jquery.scroller.js"></script>
     <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/main.js"></script>
 
@@ -42,7 +42,7 @@
 	<header id="header" class="site-header" role="banner">
 		<div class="container">
 			<div class="center span three alpha omega text-center">
-				<h1 class="no-margin text-center"><a class="ir logo" href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<h1 class="no-margin text-center logo-container"><a class="logo" href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<p class="didot-italic description"><?php bloginfo('description'); ?></p>
 			</div>
 		</div>

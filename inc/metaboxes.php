@@ -2,9 +2,6 @@
 add_action('admin_init', 'add_custom_boxes');
 add_action('admin_head', 'load_externals');
 
-add_filter("attachment_fields_to_edit", 'image_fields_to_edit', null, 2);
-add_filter("attachment_fields_to_save", 'image_fields_to_save', null , 2);
-
 function add_custom_boxes(){
 	$post_id = NULL;
 	if(isset($_GET['post'])){
@@ -16,24 +13,21 @@ function add_custom_boxes(){
 	$template_file = get_post_meta($post_id,'_wp_page_template', true);
  	
 	if($post){
-		add_meta_box('post_options_box', 'Post Options', 'post_options_input', 'post');
 		if($post->post_parent == 0){
-			add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'product');
+			//add_meta_box('homepage_image_box', 'Homepage Image', 'homepage_image_input', 'product');
 		}
 		if(in_category(get_editer_option('hts_category_id'), $post_id)){
-			add_meta_box('hts_post_box', 'Hit the streets Fields', 'hts_post_input', 'post');
+			//add_meta_box('hts_post_box', 'Hit the streets Fields', 'hts_post_input', 'post');
 		}
-		add_action('save_post', 'post_fields_save');
+		//add_action('save_post', 'post_fields_save');
 		
 		
 		
 		if($post->post_parent){
-			add_meta_box('product_box', 'Product Fields', 'product_input', 'product');
-			add_action('save_post', 'product_fields_save');
+		//	add_meta_box('product_box', 'Product Fields', 'product_input', 'product');
+		//	add_action('save_post', 'product_fields_save');
 		}
 
-		add_meta_box('ad_box', 'Ad Fields', 'ad_input', 'ad');
-		add_action('save_post', 'ad_fields_save');
 		
 	}
 }
@@ -50,28 +44,6 @@ function load_externals(){
     <?php
 }
 
-/**************Post Options*****************/
-
-
-function post_options_input(){
-	global $post;
-	$tumblr_post_id = get_post_meta($post->ID, 'tumblr_post_id', true);
-	?>
-	<table style="width: 300px;">
-		
-		<tbody>
-			<tr>
-				<td>
-					<label>Tumblr Post ID:</label>
-				</td>
-				<td>
-					<input type="text" value="<?php echo $tumblr_post_id; ?>" name="tumblr_post_id" />
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<?php
-}
 
 /**************Homepage Image*****************/
 
@@ -300,19 +272,19 @@ function ad_fields_save($post_id) {
 /**************Attachment Fields*****************/
 
 
-function image_fields_to_edit($form_fields, $post){
-	$form_fields['external_url'] = array(
-		'label' => __("External Link"),
-		'input' => 'text',
-		'value' => get_post_meta($post->ID, 'external_url', true),
-		'helps' => __("http://"),
-	);
-	return $form_fields;
-}
+// function image_fields_to_edit($form_fields, $post){
+// 	$form_fields['external_url'] = array(
+// 		'label' => __("External Link"),
+// 		'input' => 'text',
+// 		'value' => get_post_meta($post->ID, 'external_url', true),
+// 		'helps' => __("http://"),
+// 	);
+// 	return $form_fields;
+// }
 
-function image_fields_to_save($post, $attachment) {
-	if( isset($attachment['external_url']) ){
-		update_post_meta($post['ID'], 'external_url', $attachment['external_url']);
-	}
-	return $post;
-}
+// function image_fields_to_save($post, $attachment) {
+// 	if( isset($attachment['external_url']) ){
+// 		update_post_meta($post['ID'], 'external_url', $attachment['external_url']);
+// 	}
+// 	return $post;
+// }

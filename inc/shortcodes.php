@@ -15,31 +15,30 @@ remove_shortcode('gallery');
 add_shortcode( 'gallery', 'gallery_handler' );
 function gallery_handler( $atts ) {
 	global $post;
-	$post_format = get_post_format($post->ID);
 	$output = '';
 
     extract(shortcode_atts(array(
         'id'      => '0',
-        'type'	  => ''
+        'type'	  => 'gallery'
     ), $atts));
 
     $gallery = get_post($atts['id']);
 	if($gallery) {
 		$args = array( 'post_type' => 'attachment', 'numberposts' => -1, 'post_status' => null, 'post_parent' => $gallery->ID, 'orderby' => 'menu_order', 'order' => 'ASC' ); 
 		$attachments = get_posts($args);
-		
-		switch($atts['type']){
+		$type = (isset($atts['type'])) ? $atts['type'] : 'gallery';
+		switch($type){
 
 			case 'shop':
 				$output .= '<div class="shop" data-id="'.$gallery->ID.'">';
 				$output .= apply_filters('the_content', $gallery->post_content);
 				if (!empty($attachments)) {
 					$output .= '<ul class="shop-list clearfix" >';
-					$columns = array('one', 'two', 'three', 'four');
+					$columns = array('first', 'second', 'third', 'fourth');
 					$total_columns = count($columns);
 					$i = 0;
 					foreach ( $attachments as $attachment ) {
-						$output .= '<li class="product '.$columns[$i % $total_columns].'">';
+						$output .= '<li class="product span two-and-half '.$columns[$i % $total_columns].'">';
 						$output .= '<div class="thumbnail">';
 						$output .= '<a href="'.get_post_meta($attachment->ID, 'external_url', true).'" target="_blank">';
 						$image = wp_get_attachment_image_src( $attachment->ID, 'custom_thumbnail' );
@@ -96,7 +95,7 @@ function gallery_handler( $atts ) {
 				$output .= '</div>';
 				break;
 			default;
-				$output .= '<div class="gallery-scroller scroller pull-two" data-id="'.$gallery->ID.'">';
+				$output .= '<div class="gallery-scroller scroller" data-id="'.$gallery->ID.'">';
 				$output .= apply_filters('the_content', $gallery->post_content);
 				if (!empty($attachments)) {
 					$output .= '<div class="scroller-mask">';
@@ -104,11 +103,7 @@ function gallery_handler( $atts ) {
 					foreach ( $attachments as $attachment ) {
 						$output .= '<div class="scroll-item" data-id="'.$attachment->ID.'">';
 						$output .= '<div class="image">';
-						if($post_format == 'gallery'){
-							$image = wp_get_attachment_image_src( $attachment->ID, 'large');
-						} else {
-							$image = wp_get_attachment_image_src( $attachment->ID, 'gallery' );
-						}
+						$image = wp_get_attachment_image_src( $attachment->ID, 'gallery' );
 						$output .= '<img src="'.$image[0].'" width="'.$image[1].'" />';
 						$output .= '</div>';
 						$output .= '<div class="description">';
@@ -132,7 +127,6 @@ function gallery_handler( $atts ) {
 add_shortcode( 'embed_page', 'embed_page_handler' );
 function embed_page_handler( $atts ) {
 	global $post;
-	$post_format = get_post_format($post->ID);
 	$output = '';
     extract(shortcode_atts(array(
         'id'      => '0'

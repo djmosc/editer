@@ -8,8 +8,8 @@
 
 get_header(); ?>
 
-<section id="error" class="column eightteen alpha omega">
-	<div id="content" class="site-content" role="main">
+<section id="error">
+	<div id="content" class="site-content span seven-and-half alpha" role="main">
 
 		<article id="post-0" class="post error-404 not-found">
 			<header class="error-header">
@@ -21,7 +21,7 @@ get_header(); ?>
 			<div class="content">
 				<div class="error-search striped-border top left right bottom">
 					<div class="inner white-bg clearfix">
-						<div class="column eight push-four"><?php get_search_form(); ?></div>
+						<div class="span center eight"><?php get_search_form(); ?></div>
 					</div>
 				</div><!-- .search-header -->
 			</div><!-- .entry-content -->
@@ -33,7 +33,6 @@ get_header(); ?>
 		</article><!-- #post-0 .post .error404 .not-found -->
 
 	</div><!-- #content .site-content -->
+	<?php get_sidebar(); ?>
 </section><!-- #error -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

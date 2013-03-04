@@ -17,7 +17,7 @@ class Post extends WP_Widget {
         echo '</label></p>';
         echo '<p><label>';
         echo _('In category:').'&nbsp;&nbsp;';
-        wp_dropdown_categories(array('hierarchical' => true, 'selected' => $category_id, 'show_option_none' => 'All', 'name' => $this->get_field_name('category_id')));
+        wp_dropdown_categories(array('hierarchical' => true, 'selected' => $category_id, 'show_option_none' => 'Current', 'show_option_all' => 'All', 'name' => $this->get_field_name('category_id')));
         echo '</label></p>';
         echo '<p>';
         if ( $custom_query->have_posts() ) :
@@ -46,10 +46,17 @@ class Post extends WP_Widget {
 
     function widget($args, $instance) {
         global $post;
-
         $size = ($args['id'] == 'homepage_content' || $args['id'] == 'category_content') ? 'large' : 'small';
-        $args['offset'] = $instance['offset'];
-        $args['category_id'] = (isset($instance['category_id'])) ? $instance['category_id'] : -1;
+        $args['offset'] = ($instance['offset']) ? $instance['offset'] : 1;
+        $args['category_id'] = (isset($instance['category_id']) && $instance['category_id'] != 0) ? $instance['category_id'] : -1;
+        if(is_category()){
+            $category = get_top_level_category(get_query_var('cat'));
+            if($instance['category_id'] == 0){
+                $args['category_id'] = $category->term_id;
+            } else if($instance['category_id'] == -1){
+                $args['category_id'] = get_query_var('cat');
+            }
+        }
         $args['postid'] = $instance['postid'];
         $args['featured'] = (isset($instance['featured'])) ? $instance['featured'] : 0;
 
@@ -62,7 +69,7 @@ class Post extends WP_Widget {
             // $options['category__not_in'] = array(exclude categoroy);
             $options['category__in'] = array($args['category_id']);
         }
-    
+        
         $custom_query = new WP_Query($options);
         if ( $custom_query->have_posts() ) : ?>
             <?php
@@ -71,6 +78,9 @@ class Post extends WP_Widget {
                 $editor = get_the_editor($post->post_author); 
             ?>
                 <div class="post border <?php if( $args['featured'] ) echo 'featured'; ?> <?php echo $size; ?>">
+                    <?php if( $args['featured'] &&  is_category()): ?>
+                    <span class="ribbon"><?php _e("Latest Feature", 'editer'); ?></span>
+                    <?php endif; ?>
                     <div class="thumbnail featured-image">
                         <a href="<?php the_permalink();?>">
                             <?php
@@ -89,21 +99,23 @@ class Post extends WP_Widget {
                         <?php get_template_part( 'inc/category'); ?>
                         <?php if($size == 'small'): ?>
                         <hr />
-                        <?php endif; ?>
                         <h4 class="title text-center uppercase"><a href="<?php the_permalink();?>"><?php the_title();?></a></h4>
+                        <?php else: ?>
+                        <h1 class="title text-center uppercase"><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
+                        <?php endif; ?>
                         <p class="excerpt arial small text-center avenir dark-grey"><?php echo get_the_excerpt(); ?></p>
                         <?php if($editor): ?>
-                        <p class="author italic tiny text-center grey"><?php _e("With", 'editer'); ?> <a href="<?php echo get_permalink($editor->ID); ?>" class="dark-grey"><?php the_author(); ?></a></p>
+                        <p class="author didot-italic small text-center grey"><?php _e("With", 'editer'); ?> <a href="<?php echo get_permalink($editor->ID); ?>" class="dark-grey"><?php the_author(); ?></a></p>
                         <?php endif; ?>
                     </div>
                     <footer class="footer <?php echo ($size == 'small') ? 'border-top' : 'striped-border top'?>">
                         <div class="inner clearfix">
-                            <div class="span five omega">
+                            <div class="span five alpha omega">
                                 <?php if(!$args['featured']): ?>
                                 <span class="tiny light-grey text-center"><?php the_time(get_option('date_format')); ?></span>
                                <?php endif; ?>
                             </div>
-                            <div class="span five alpha">
+                            <div class="span five alpha omega">
                                 <p class="no-margin text-right">
                                     <a href="<?php the_permalink(); ?>" class="red-btn read-more-btn"><?php _e("Read More", 'editer'); ?></a>
                                 </p>
@@ -115,9 +127,8 @@ class Post extends WP_Widget {
             $i++;
             endwhile;
             wp_reset_postdata();
+            wp_reset_query();
             ?>
-        <?php else: ?>
-        <p>No post found</p>
         <?php endif; ?>
         <?php 	echo $args['after_widget'];
     }

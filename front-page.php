@@ -17,66 +17,60 @@ get_header(); ?>
 
 
 <?php 
-	$carousel_ary = array('', '', '', '', '');
-	
-	$posts_query = new WP_Query( array('posts_per_page' => 3, 'post_type' => array('post'), 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true, 'limit' => 3, 'category__not_in' => array(get_editer_option('hts_category_id'))));
-	$posts_position_ary = array(0, 2, 4);
-	$ads_query = new WP_Query( array('posts_per_page' => 2, 'post_type' => array('ad'), 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true, 'limit' => 2, 'orderby' => 'menu_order', 'order' => 'ASC' ));
-	$ads_position_ary = array(1, 3);
-	
-	if ( $posts_query->have_posts() ) {
-		$i = 0;
-		while ( $posts_query->have_posts() ) { 
-			$posts_query->the_post();
-			$carousel_ary[$posts_position_ary[$i]] = $post;
-			$i++;
-		}
-	}
-
-	if ( $ads_query->have_posts() ) {
-		$i = 0;
-		while ( $ads_query->have_posts() ) { 
-			$ads_query->the_post();
-			if($post){
-				$carousel_ary[$ads_position_ary[$i]] = $post;
-			}
-			$i++;
-		}
-	}
-
-	if ( !empty($carousel_ary) ) :
-
+	$custom_query = new WP_Query( array('posts_per_page' => -1, 'post_type' => array('slide'), 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true, 'limit' => -1, 'orderby' => 'menu_order', 'order' => 'ASC'));
+	if ( $custom_query->have_posts() && 1 == 1) :
 	?>
-	<div id="homepage-scroller" class="scroller">
+	<div id="homepage-scroller" class="scroller" data-scroll-all="true">
 		<div class="scroller-mask">
-			<?php foreach($carousel_ary as $post) :?>
-				<?php if ($post): ?>
-				<?php $url = ($post->post_type == 'post' || $post->post_type == 'product') ? get_permalink($post->ID) : get_post_meta($post->ID, 'external_url', true); ?>
-				<div class="scroll-item" data-id="<?php echo $post->ID;?>">
+			<div class="scroll-items-container">
+				<?php $i = 0; ?>
+				<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
+				<?php 
+					$slide = $post;
+					if(get_field('use_post', $slide->ID)){
+						$related_post = (get_field('post', $slide->ID)) ? get_field('post', $slide->ID) : get_latest_post();
+						setup_postdata($related_post);
+						$post = $related_post;
+					}
+					$url = ( get_field('external_url', $post->ID) ) ? get_field('external_url', $post->ID) : get_permalink($post->ID);
+				?>
+				<div class="scroll-item <?php if($i == 0) echo 'current'; ?> <?php the_field('image_type', $slide->ID); ?>" data-id="<?php echo $slide->ID;?>">
 					<div class="post">
+						<?php if(( get_field('use_post', $slide->ID) ) && date('Ymd', strtotime($post->post_date)) == date('Ymd')): ?>
+						<span class="todays-edit ribbon description"><?php _e("Today's Edit", 'editer') ?></span>
+						<?php endif; ?>
 			        	<div class="thumbnail featured-image">
-			        		<a href="<?php echo $url;?>" <?php if(get_post_meta($post->ID, 'new_tab', true)) echo 'target="_blank"'; ?>>
+			        		<!-- <a href="<?php echo $url;?>" <?php if(get_field('external_url')) echo 'target="_blank"'; ?>> -->
 			        			<?php 
-			        			$image_id = get_post_meta($post->ID, 'homepage_image_id', true); 
-			        			if(!$image_id) $image_id = get_post_thumbnail_id($post->ID);
-			        			echo wp_get_attachment_image($image_id, 'custom_large', false, array('title' => get_the_title())); ?>
-			        		</a>
-			        		<?php if($post->post_type == 'post') : ?>
-			        		<?php get_template_part( 'inc/category'); ?>
-				        	<?php endif; ?>
-			        	</div>
-			        	<div class="post-meta">
-				        	<?php if($post->post_type == 'post') : ?>
-				        	<p class="date light-grey italic small text-center"><?php echo get_the_time(get_option('date_format'), $post->ID); ?></p>
-			        		<hr />
-			        		<?php endif; ?>
-			        		<h1 class="title text-center uppercase"><a href="<?php echo $url;?>" <?php if($post->post_type == 'ad') echo 'target="_blank"'; ?>><?php echo get_the_title($post->ID);?></a></h1>
-			            	<p class="excerpt arial small text-center dark-grey"><?php echo $post->post_excerpt; ?></p>
+			        			$image_id = get_post_thumbnail_id($post->ID);
+			        			echo wp_get_attachment_image($image_id, 'slide', false, array('title' => ''));
+			        			?>
+			        		<!-- </a> -->
+		        		</div>
+			        	<div class="content description <?php the_field('content_alignment', $slide->ID); ?>" style="<?php the_field('content_styles', $slide->ID); ?>">
+				        	<?php if($slide->post_content != ''): ?>
+				        		<?php echo $slide->post_content; ?>
+				        	<?php else: ?>
+					        	<?php if($post->post_type == 'post') : ?>
+				        		<?php get_template_part( 'inc/category'); ?>
+					        	<?php endif; ?>
+				        		<header class="header">
+					        		<h1 class="title uppercase"><a href="<?php echo $url;?>" <?php if(get_field('external_url', $post->ID)) echo 'target="_blank"'; ?>><?php echo the_title();?></a></h1>
+					            	<!-- <p class="date italic small"><?php echo get_the_time(get_option('date_format'), $post->ID); ?></p> -->
+					        		<p class="author didot-italic small">with <?php the_author(); ?></p>
+					        	</header>
+					        	<div class="post-content">
+				        			<p class="excerpt avenir small"><?php echo get_the_excerpt();; ?></p>
+					        		<p><a href="<?php echo $url; ?>" <?php if(get_field('external_url', $post->ID)) echo 'target="_blank"'; ?> class="red-btn"><?php _e("Read More", 'editer'); ?></a>
+			            		</div>
+			            	<?php endif; ?>
 			            </div>
 		            </div>
+		            <div class="overlay"></div>
 				</div>
-				<?php endif ?>
-			<?php endforeach; ?>
+				<?php $i++; ?>
+				<?php endwhile; ?>
+			</div>
 		</div>
 		<div class="scroller-navigation">
 			<a class="prev-btn"></a>

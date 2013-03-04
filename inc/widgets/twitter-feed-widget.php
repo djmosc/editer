@@ -28,7 +28,7 @@ class Twitter_Feed extends WP_Widget {
 		
 		$args['username'] = (isset($instance['username'])) ? $instance['username'] : 'editerdotcom';
 		echo $args['before_widget'] . '<div class="border">';
-		echo '<h5 class="text-center uppercase avenir-bold small widget-title border-bottom"><a href="http://twitter.com/'.$args['username'].'" target="_blank" class="black">' . $args['title'] . '</a></h5>';
+		echo '<h5 class="text-center uppercase novecento-bold small widget-title border-bottom"><a href="http://twitter.com/'.$args['username'].'" target="_blank" class="black">' . $args['title'] . '</a></h5>';
 		?>
         <script>
         	$(function(){

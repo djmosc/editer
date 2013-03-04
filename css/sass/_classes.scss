@@ -41,10 +41,6 @@
 
 .arial {
 	font-family: Arial, Helvetica, sans-serif;
-
-	&.uppercase {
-		letter-spacing: 1px;
-	}
 }
 
 .didot {
@@ -60,28 +56,32 @@
 .novecento-bold {
 	font-family: 'Novecento W00 Wide Bold', Arial, Helvetica, sans-serif;
 	font-weight: normal;
-	letter-spacing: 1px;
+	letter-spacing: 0px;
 }
 
 .novecento-demibold {
 	font-family: 'NovecentoW00-WideDemiBo', Arial, Helvetica, sans-serif;
 	font-weight: normal;
-	letter-spacing: 1px;
+	letter-spacing: 0px;
 }
 
 .novecento-medium {
 	font-family: 'Novecento W00 Medium', Arial, Helvetica, sans-serif;
 	font-weight: normal;
+	letter-spacing: 0px;
 }
 
 .avenir {
 	font-family: 'Avenir LT W01 55 Roman', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	letter-spacing: 0px;
 }
 
 
 .avenir-bold {
 	font-family: 'Avenir LT W02 95 Black', Arial, Helvetica, sans-serif;
-	letter-spacing: 1px;
+	font-weight: normal;
+	letter-spacing: 0px;
 }
 
 
@@ -181,7 +181,7 @@ p {
 
 .small {
 	font-size: 11px;
-	line-height: 15px;
+	line-height: 14px;
 }
 
 .small {
@@ -313,6 +313,15 @@ a.purple:hover {
    Misc
    ========================================================================== */
 
+
+.ir {
+	border:0;
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+	background-color: transparent;
+}
+
 .hide {
 	display: none;
 }
@@ -438,6 +447,15 @@ hr {
 
 			&.current {
 				display: block;
+
+				.description {
+					opacity: 1;
+				}
+			}
+
+			.description {
+				@include transition(opacity 1s ease-in-out);
+				opacity: 0;
 			}
 		}
 	}
@@ -474,9 +492,12 @@ hr {
 	.scroller-navigation {
 		position: absolute;
 		width: 100%;
-		top: 200px;
+		top: 0;
 		left: 0;
-		height: 40px;
+		height: 0;
+		top: 50%;
+		margin-top: -20px;
+			
 		// margin: -40px 0 0 0;
 
 		.prev-btn {
@@ -486,7 +507,8 @@ hr {
 			background: url(../images/btn_arrow_left.jpg) no-repeat;
 			position: absolute;
 			left: 0;
-			&:hover {
+			&:hover,
+			&.hover {
 				background-position: left bottom;
 			}
 		}
@@ -497,7 +519,8 @@ hr {
 			background: url(../images/btn_arrow_right.jpg) no-repeat;
 			position: absolute;
 			right: 0;
-			&:hover {
+			&:hover,
+			&.hover {
 				background-position: left bottom;
 			}
 		}
@@ -508,9 +531,7 @@ hr {
 	overflow: hidden;
 	padding: 40px;
 	border: 1px solid #cccccc;
-	width: 710px;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin: 30px -100px;
 
 	.scroller-mask {
 		height: 100%;
@@ -725,13 +746,65 @@ blockquote {
 		margin: 0 5px;
 		font-family: 'NovecentoW00-WideDemiBo', Helvetica, Arial, sans-serif;
 	}
+}
 
+.previous-next-posts {
+	.post {
+		.content {
+			padding: 10px 0;
+		}
+
+		&.previous {
+			background: url(../images/btn_arrow_left_small.png) no-repeat left center;
+		}
+		&.next {
+			background: url(../images/btn_arrow_right_small.png) no-repeat right center;
+		}
+	}
 }
 
 .share-links {
-	margin: 0 0 40px 0;
+	position: relative;
+	.header {
+		position: absolute;
+		background: #FFF;
+		padding: 0 8px;
+		top: -10px;
+		left: 15px;
+
+		.title {
+			font-size: 10px;
+			margin: 0;
+		}
+	}
+	margin: 0;
+
 	> .inner {
-		padding: 20px 0;
+		padding: 30px 25px 30px 35px;
+	}
+
+	&.small {
+
+		> .inner {
+			padding: 15px 20px 25px 30px;
+		}
+		ul {
+			@extend .clearfix;
+			li {
+				float: left;
+				margin: 0;
+				a {
+					padding-left: 20px;
+					margin-right: 15px;
+					border:0;
+					font: 0/0 a;
+					text-shadow: none;
+					color: transparent;
+					background-color: transparent;
+				}
+				
+			}
+		}
 	}
 }
 
@@ -739,12 +812,19 @@ blockquote {
 
 	.category-posts-header {
 		margin: 0 0 18px 0;
+		position: relative;
+
+		.see-all-btn {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
 	}
 	.post {
 		float: left;
-		padding-left: 10px;
-		padding-right: 10px;
-		width: 250px;
+		padding-left: 1%;
+		padding-right: 1%;
+		width: 32%;
 		&.alpha {
 			padding-left: 0;
 		}
@@ -759,6 +839,27 @@ blockquote {
 	}
 }
 
+
+.shop-category-posts {
+
+	.category-posts-header {
+		margin: 0 0 18px 0;
+	}
+
+	.category-posts-footer {
+		padding: 5px 0;
+	}
+	.posts {
+		margin: 0 -10px;
+		.post {
+			margin: 0 0 20px;
+			.post-meta {
+				padding: 0 20px;
+			}
+		}
+	}
+	
+}
 .embed-page {
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -807,17 +908,9 @@ blockquote {
 
 		li {
 			list-style: none;
-			float: left;
-			width: 173px;
-			padding: 0 10px 20px 10px;
-			height: 400px;
-			&.one {
-				padding-left: 0;
-			}
+			padding-bottom: 10px;
+			height: 430px;
 
-			&.four {
-				padding-right: 0;
-			}
 			.thumbnail {
 				border-bottom: 1px solid #EEEEEE;
 				height: 320px;
@@ -832,7 +925,7 @@ blockquote {
 				img {
 					vertical-align: middle;
 					max-width: 100%;
-					max-height: 100%;
+					max-height: 96%;
 				}
 			}
 
@@ -970,6 +1063,113 @@ blockquote {
 
 .scale {
 	width: 100%;
+	display: block;
+}
+
+.post {
+	position: relative;
+	.post-meta {
+		padding: 0 15px;
+
+		.author {
+			margin: 10px 0;
+		}
+	}
+
+	.footer {
+		margin-top: 10px;
+
+		> .inner {
+			padding: 4px 10px 6px 10px;
+		}
+	}
+}
+
+.post-author {
+	.header {
+		.title {
+			margin: 0;
+			font-size: 10px;
+			color: #FFF;
+			display: inline-block;
+			background: #000;
+			a {
+				display: inline-block;
+				color: #FFF;
+				height: 30px;
+				line-height: 34px;
+				padding: 0 10px;
+
+				&:hover {
+					color: #a40000;
+				}
+			}
+		}
+	}
+	.post {
+		border: 3px solid #000;
+		padding: 10px;
+
+		.content {
+			padding: 10px 0;
+			.post-meta {
+				padding: 0;
+			}
+		}
+	}
+}
+
+.ribbon {
+	font-family: 'Didot W01 Italic', Georgia;
+	font-weight: normal;
+	position: absolute;
+	font-size: 16px;
+	top: 8px;
+	left: -11px;
+	padding: 8px 25px;
+	border-right: #000 solid 3px;
+	border-top: 1px solid #d7d7d7;
+	border-left: 1px solid #d7d7d7;
+	border-bottom: 1px solid #d7d7d7;
+	z-index: 200;
+	color: #000;
+	background: #FFF;
+
+	&:before {
+		border-color: #626262 transparent;
+	    border-style: solid;
+	    border-width: 10px 0 0 10px;
+	    bottom: -10px;
+	    content: "";
+	    display: block;
+	    left: 0;
+	    position: absolute;
+	    width: 0;
+	}
+}
+
+.related-posts {
+	.posts {
+		.post {
+			padding-right: 1px; 
+		}
+	}
+}
+
+.shadow {
+	position: relative;
+					
+	&:after {
+		position: absolute;
+		width: 8px;
+		content: '';
+		height: 95%;
+		display: block;
+		background: url(../images/shadow.png) no-repeat top right;
+		background-size: 100% 100%;
+		top: 2%;
+		right: -8px;
+	}
 }
 /* =============================================================================
    Widgets
@@ -977,7 +1177,7 @@ blockquote {
 
 
 .widget {
-	margin: 0 0 24px 0;
+	margin: 0 0 20px 0;
 }
 
 .widget_search {
@@ -1006,7 +1206,7 @@ blockquote {
 						background: url(../images/shadow.png) no-repeat top right;
 						background-size: 100% 100%;
 						top: 2%;
-						right: -9px;
+						right: -8px;
 					}
 				}
 				img {
@@ -1021,22 +1221,6 @@ blockquote {
 					padding-top: 10px;
 					padding-bottom: 12px;
 				}
-			}
-		}
-
-		.post-meta {
-			padding: 0 15px;
-
-			.author {
-				margin: 10px 0;
-			}
-		}
-
-		.footer {
-			margin-top: 10px;
-
-			> .inner {
-				padding: 4px 10px 6px 10px;
 			}
 		}
 	}
@@ -1059,6 +1243,93 @@ blockquote {
 			> .inner {
 				padding: 4px 10px 6px 10px;
 			}
+		}
+	}
+}
+
+.widget_shop {
+	.shop {
+
+		&.style-2 {
+			position: relative;
+			top: 3px;
+			left: 3px;
+			border: 1px solid #000;
+			> .inner {
+				position: relative;
+				top: -3px;
+				left: -3px;
+				border: 1px solid #000;
+				background: #FFF;
+				padding: 10px;
+			}
+
+			.category-image {
+				position: relative;
+				z-index: 200;
+				a {
+					display: inline-block;
+				}
+
+				img {
+					height: 80px;
+					width: auto;
+				}
+			}
+
+			.featured-image {
+				margin-top: -50px;
+			}
+		}
+
+		&.style-4 {
+			border: 5px solid #f7f7f7;
+			position: relative;
+			> .inner {
+				padding: 10px 0;
+			}
+
+			.category-image {
+				position: relative;
+				z-index: 200;
+				a {
+					display: inline-block;
+				}
+
+				img {
+					height: 80px;
+					width: auto;
+				}
+			}
+
+			&:after {
+				content: '';
+				position: absolute;
+				height: 10px;
+				width: 100%;
+				left: 0;
+				bottom: -15px;
+				background: url(../images/shadow_bottom.png) no-repeat center top; 
+			} 
+		}
+
+		&.style-5 {
+			.category-image {
+				position: relative;
+				z-index: 200;
+				a {
+					display: inline-block;
+				}
+
+				img {
+					height: 80px;
+					width: auto;
+				}
+			}
+		}
+
+		.post-meta {
+			padding-top: 8px;
 		}
 	}
 }
@@ -1179,21 +1450,52 @@ blockquote {
 }
 
 .widget_tumblr {
+	position: relative;
+	padding-top: 40px;
 	.widget-title {
 		font: 0/0 a;
 	    text-shadow: none;
 	    color: transparent;
-	    width: 163px;
-	    height: 82px;
+	    width: 232px;
+	    height: 84px;
 	    display: block;
-	    background: url(../images/title_behind_the_scenes.png) no-repeat;
-	    position: relative;
-	    margin: 0 auto;
-	    top: 24px;
+	    background: url(../images/title_streetstyle.png) no-repeat;
+	    background-size: contain;
+	    position: absolute;
+	    z-index: 200;
+	    top: 0;
+	    left: 50%;
+	    margin-left: -116px;
 	}
 
 	.tumblr-post {
+
+		&.large {
+			width: 32.6%;
+			margin: 0 0.5% 10px 0.5%;
+		}
+
+		&.small {
+			width:  100%;
+		}
+
+		height: 270px;
+
+		&.first {
+			margin-left: 0;
+		}
+
+		&.third {
+			margin-right: 0;
+		}
+
 		.thumbnail {
+			display: block;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center center;
+			width: 100%;
+			height: 100%;
 			img {
 				width: 100%;
 			}
@@ -1251,6 +1553,72 @@ blockquote {
 }
 
 
+.widget_category_sub_navigation {
+	.category-navigation {
+		ul {
+			list-style: none;
+			padding: 5px 0;
+			margin: 0;
+
+			li {
+				text-align: center;
+				margin: 3px 0;
+				a {
+					display: inline-block;
+					@extend .novecento-demibold;
+					font-size: 10px;
+					color: #333333;
+					line-height: 20px;
+
+					&:hover {
+						color: #a40000;
+					}
+				}
+
+				&.current-cat a {
+					color: #a40000;
+				}
+			}
+		}
+	}
+}
+
+
+.widget_editor {
+	.header {
+		.title {
+			margin: 0;
+			font-size: 10px;
+			color: #FFF;
+			display: inline-block;
+			background: #000;
+			a {
+				display: inline-block;
+				color: #FFF;
+				height: 30px;
+				line-height: 34px;
+				padding: 0 10px;
+
+				&:hover {
+					color: #a40000;
+				}
+			}
+		}
+	}
+
+	.editor {
+		border: 3px solid #000;
+
+		.post-meta {
+			padding: 10px 10px 0 10px;
+		}
+
+		.footer {
+			margin-bottom: 20px;
+		}
+	}
+}
+
 /* =============================================================================
    Lists
    ========================================================================== */
@@ -1264,6 +1632,16 @@ blockquote {
 		background: url(../images/list_red.png) no-repeat 0 8px;
 		list-style: none;
 		padding: 2px 0 2px 14px;
+	}
+}
+
+.unstyled-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li {
+		margin: 8px 0;
 	}
 }
 
@@ -1281,10 +1659,10 @@ blockquote {
 	font-size: 9px;
 	padding: 0 10px;
 	vertical-align: middle;
-	margin-top: -2px;
 	height: 20px;
 	line-height: 20px;
 	display: inline-block;
+	margin-right: 10px;
 	text-decoration: none !important;
 	&:hover {
 		color: #FFFFFF;
@@ -1338,15 +1716,31 @@ blockquote {
 	}
 }
 
+.black-btn {
+	display: inline-block;
+	@extend .novecento-bold;
+	background:  #000 url(../images/btn_plus.png) no-repeat 5px center;
+	color: #FFF;
+	font-size: 10px;
+	padding: 0 10px 0 20px;
+	vertical-align: middle;
+	height: 30px;
+	line-height: 30px;
+	&:hover {
+		background-color: #333;
+		color: #FFF;
+	}
+}
+
 .share-email-btn,
 .share-twitter-btn,
 .share-facebook-btn,
 .share-link-btn {
-	font-family: Arial, Helvetica, sans-serif;
+	@extend .avenir;
 	font-size: 11px;
 	height: 17px;
 	line-height: 17px;
-	padding: 0 0 0 22px;
+	padding: 0 0 0 40px;
 	margin: 0 20px 0 0;
 	display: inline-block;
 	text-decoration: none !important;
@@ -1525,12 +1919,13 @@ blockquote {
 
 .container {
 	width: 1050px;
+	min-width: 1050px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
 	 *zoom: 1;
 
-	 @include media(11){
+	 @include media(10){
 	 	width: auto;
 	 }
 }
@@ -1554,34 +1949,31 @@ blockquote {
 	padding-right: 0px;
 }
  
-$columns: (one, two, three, four, five, six, seven, eight, nine, ten);
+$columns: ((one, 10%), (two, 20%), (two-and-half, 25%), (three, 30%), (four, 40%), (five, 50%), (six, 60%), (seven, 70%), (seven-and-half, 75%), (eight, 80%), (nine, 90%), (ten, 100%));
 $total_columns: length($columns);
 
-@mixin columns($width){
+@mixin columns(){
 	$i: 1;
 	@each $column in $columns {
-		$total_width: $width;
-		@if type-of($width) == number {
-			$total_width: ($width * $i);
-		}
+		$class: nth($column, 1);
+		$width: nth($column, 2);
 		
-		.span.#{$column} {
-			width: ($total_width);
+		.span.#{$class} {
+			width: ($width);
 		}
 
-		.push-#{$column} {
-			margin-left: ($total_width);
+		.push-#{$class} {
+			margin-left: ($width);
 		}
 
-		.pull-#{$column} {
-			margin-left: -($total_width);
+		.pull-#{$class} {
+			margin-left: -($width);
 		}
 		$i: $i + 1;
 	}
 }
 
-@include columns(100% / $total_columns);
-
+@include columns();
 
 .left, .alignleft {
 	float: left;

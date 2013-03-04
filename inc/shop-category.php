@@ -1,10 +1,13 @@
 <?php global $category_level; ?>
 <div class="post-category novecento-bold">
 	<?php
-	$categories = get_the_category();
-	$category = get_top_level_category($categories[0]->term_id);
+	$taxonomy = 'shop_category';
+	$categories = get_the_terms($post->ID, $taxonomy);
+	//print_r($categories);
+	$categories = array_slice($categories, 0, 1);
+	$category = get_top_level_category($categories[0]->term_id, $taxonomy);
 	if(is_category() || $category_level == 2 || is_single()) {
-		$category = get_sub_category($category->term_id);
+		$category = get_sub_category($post->ID, $taxonomy);
 	}
 
 	if($category):

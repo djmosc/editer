@@ -7,26 +7,41 @@ if ( $custom_query->have_posts() ) :
 <div class="category-posts">
 	<header class="category-posts-header thick-border-bottom">
         <h5 class="black uppercase novecento-bold small title text-center">More in <a href="<?php echo get_category_link($category->term_id);?>" class="red"><?php echo $category->cat_name; ?></a></h5>
+        <a href="<?php echo get_category_link($category->term_id);?>" class="black-btn see-all-btn"><?php _e("See All", 'editer'); ?></a>
     </header>
 	<!-- <p class="align-right no-margin arial small"><a href="<?php echo get_category_link($category->term_id);?>" class="red">show all in <span class="uppercase"><?php echo $category->cat_name; ?></span> &raquo;</a></p> -->
 	<div class="clearfix">
 		<?php $i = 0; ?>
 		<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
 		<div class="post <?php if(($i + 1)  % 3 == 0) echo 'omega'; ?> <?php if(($i) % 3 == 0) echo 'alpha'; ?>">
-        	<div class="thumbnail featured-image">
-        		<a href="<?php the_permalink();?>">
-        			<?php the_post_thumbnail(array(250, 999), array('title' => get_the_title())); ?>
-        		</a>
-        		<?php
-                $category_level = 2;
-                get_template_part( 'inc/category');
-                ?>
-        	</div>
-            <div class="post-meta">
-            	<p class="date light-grey italic tiny text-center"><?php the_time(get_option('date_format')); ?></p>
-        		<hr />
-        		<h4 class="title text-center uppercase"><a href="<?php the_permalink();?>"><?php the_title();?></a></h4>
-            	<p class="excerpt arial small text-center dark-grey"><?php echo get_the_excerpt(); ?></p>
+        	<div class="inner border">
+                <div class="thumbnail featured-image">
+            		<a href="<?php the_permalink();?>">
+            			<?php the_post_thumbnail(array(250, 999), array('title' => get_the_title(), 'class' => 'scale')); ?>
+            		</a>
+            		
+            	</div>
+                <div class="post-meta">
+                	<?php
+                    $category_level = 2;
+                    get_template_part( 'inc/category');
+                    ?>
+                    <hr />
+            		<h4 class="title text-center uppercase"><a href="<?php the_permalink();?>"><?php the_title();?></a></h4>
+                	<p class="excerpt arial small text-center dark-grey"><?php echo get_the_excerpt(); ?></p>
+                </div>
+                <footer class="footer border-top">
+                    <div class="inner clearfix">
+                        <div class="span five alpha omega">
+                            <span class="tiny light-grey text-center"><?php the_time(get_option('date_format')); ?></span>
+                        </div>
+                        <div class="span five alpha omega">
+                            <p class="no-margin text-right">
+                                <a href="<?php the_permalink(); ?>" class="red-btn read-more-btn"><?php _e("Read More", 'editer'); ?></a>
+                            </p>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
         <?php $i++; ?>

@@ -31,31 +31,29 @@ class Pinterest extends WP_Widget {
 		$args['title'] = $instance['title'];
 		
 		$args['username'] = (isset($instance['username'])) ? $instance['username'] : 'editerdotcom';
-		echo $args['before_widget'] . '<div class="border">';
-		echo '<h5 class="text-center uppercase avenir-bold small widget-title border-bottom"><span class="pin"></span><a href="http://www.pinterest.com/'.$args['username'].'" class="black" target="_blank">' . $args['title'] . '</a></h5>';
-		
-		$data = file_get_contents('http://pinterestapi.co.uk/jwmoz/pins');
+		$data = file_get_contents('http://pinterestapi.co.uk/'.$args['username'].'/pins');
 		$json = json_decode($data);
-		if(!empty($json)){
-		?>
-		<div id="pinterest">
-	    	<ul>
-			<?php
-				$pins = array_slice($json->body, 0, 1);
-				foreach($pins as $pin){
+		if(!empty($json)) :
+			$pins = array_slice($json->body, 0, 1);
+			if(!empty($pins)):
+			echo $args['before_widget'] . '<div class="border">';
+			echo '<h5 class="text-center uppercase novecento-bold small widget-title border-bottom"><span class="pin"></span><a href="http://www.pinterest.com/'.$args['username'].'" class="black" target="_blank">' . $args['title'] . '</a></h5>';
 			?>
-				<li class="pin">
-					<a href="<?php echo $pin->href; ?>">
-						<img src="<?php echo $pin->src ?>" class="scale" />
-					</a>
-				</li>
-			<?php
-				}
-			}
-			?>
-			</ul>
-		</div>
-		<?php echo '</div>'.$args['after_widget'];
+			<div id="pinterest">
+		    	<ul>
+				<?php foreach($pins as $pin): ?>
+					<li class="pin">
+						<a href="<?php echo $pin->href; ?>">
+							<img src="<?php echo $pin->src ?>" class="scale" />
+						</a>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<?php echo '</div>'.$args['after_widget']; ?>
+		<?php 
+			endif;
+		endif;
 	}
 }
 
