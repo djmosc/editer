@@ -46,7 +46,7 @@ class Post extends WP_Widget {
 
     function widget($args, $instance) {
         global $post;
-        $size = ($args['id'] == 'homepage_content' || $args['id'] == 'category_content') ? 'large' : 'small';
+        $size = ($args['id'] == 'homepage_content' || $args['id'] == 'category_content' || $args['id'] == 'shop_content') ? 'large' : 'small';
         $args['offset'] = ($instance['offset']) ? $instance['offset'] : 1;
         $args['category_id'] = (isset($instance['category_id']) && $instance['category_id'] != 0) ? $instance['category_id'] : -1;
         if(is_category()){

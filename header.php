@@ -25,14 +25,29 @@
 		var themeUrl = '<?php bloginfo( 'template_url' ); ?>';
 		var baseUrl = '<?php bloginfo( 'url' ); ?>';
 	</script>
-    
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/libs/modernizr.min.js"></script>
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/libs/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/plugins/jquery.easing.js"></script>
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/plugins/jquery.scroller.js"></script>
-    <script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/main.js"></script>
+    <?php
 
-    
+    function remove_jquery() {
+		if ( ! is_admin() ) {
+	        wp_deregister_script('jquery');
+	        wp_register_script('jquery', '', FALSE, '1.9.1');
+	        wp_enqueue_script('jquery');
+	    }
+	}
+	add_action('template_redirect', 'remove_jquery');
+	
+	function load_js() {
+		wp_enqueue_script('modernizr', get_template_directory_uri().'/js/libs/modernizr.min.js');
+		wp_enqueue_script('jquery', get_template_directory_uri().'/js/libs/jquery.min.js');
+		wp_enqueue_script('easing', get_template_directory_uri().'/js/plugins/jquery.easing.js', array('jquery'));
+		wp_enqueue_script('scroller', get_template_directory_uri().'/js/plugins/jquery.scroller.js', array('jquery'));
+		wp_enqueue_script('main', get_template_directory_uri().'/js/main.js', array('jquery'));
+		wp_register_script('masonary', get_template_directory_uri().'/js/plugins/jquery.masonary.min.js', array('jquery'));
+
+		//wp_enqueue_script('masonary');
+	}
+	add_action('wp_enqueue_scripts', 'load_js');
+	?>
 <?php wp_head(); ?>
 </head>
 

@@ -1156,7 +1156,8 @@ blockquote {
     width: 100%;
     left: 0;
     bottom: -15px;
-    background: url(../images/shadow_bottom.png) no-repeat center top; }
+    background: url(../images/shadow_bottom.png) no-repeat center top;
+    background-size: 100% 100%; }
 .widget_shop .shop.style-5 .category-image {
   position: relative;
   z-index: 200; }
@@ -2621,6 +2622,10 @@ body {
         margin: 20px 0; }
 #single-shop .products-footer {
   margin: 40px 0; }
+
+#archive-shop #content .widget {
+  float: left;
+  width: 400px; }
 
 #single-product .post .entry-meta {
   width: 60%;

@@ -52,7 +52,7 @@ class Shop extends WP_Widget {
 
     function widget($args, $instance) {
         global $post;
-        $size = ($args['id'] == 'homepage_content' || $args['id'] == 'category_content') ? 'large' : 'small';
+        $size = ($args['id'] == 'homepage_content' || $args['id'] == 'category_content' || $args['id'] == 'shop_content') ? 'large' : 'small';
         $args['offset'] = ($instance['offset']) ? $instance['offset'] : 1;
         $args['term_id'] = (isset($instance['term_id']) && $instance['term_id'] != 0) ? $instance['term_id'] : -1;
         if(is_category()){
@@ -95,10 +95,11 @@ class Shop extends WP_Widget {
                 $categories = array_slice($categories, 0, 1);
                 $category = get_top_level_category($categories[0]->term_id, 'shop_category');
                 $thumbnail_size = 'thumbnail';
-                if($size == 'large'){
-                    $thumbnail_size = 'medium';
-                }
                 $image_id = get_post_thumbnail_id(get_the_ID());
+                if($size == 'large'){
+                    $image_id = get_field('large_image');
+                    $thumbnail_size = 'large';
+                }
                 $image = wp_get_attachment_image_src( $image_id, $thumbnail_size );
                             
                 switch($args['style']):
