@@ -134,7 +134,7 @@ function embed_page_handler( $atts ) {
 
     $page = get_post($atts['id']);
 	if($page) {
-		$output .= '<div class="embed-page striped-border top left right bottom pull-two">';
+		$output .= '<div class="embed-page striped-border top left right bottom">';
 		$output .= '<div class="inner">';
 		$output .= '<header class="embed-page-header">';
 		$output .= '<h3 class="text-center red didot-italic">'.get_the_title($page->ID).'</h3>';

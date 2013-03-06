@@ -30,7 +30,7 @@ function theme_options_do_page() {
 
 	?>
 	<div class="wrap">
-		<?php screen_icon(); echo "<h2>" . get_current_theme() . __( ' Theme Options', 'editer' ) . "</h2>"; ?>
+		<?php screen_icon(); echo "<h2>" . wp_get_theme() . __( ' Theme Options', 'editer' ) . "</h2>"; ?>
 
 		<?php if ( false !== $_REQUEST['settings-updated'] ) : ?>
 		<div class="updated fade"><p><strong><?php _e( 'Options saved', 'editer' ); ?></strong></p></div>
@@ -47,14 +47,7 @@ function theme_options_do_page() {
 						<input id="editer_theme_options[hts_category_id]" class="regular-text" type="text" name="editer_theme_options[hts_category_id]" value="<?php esc_attr_e( $options['hts_category_id'] ); ?>" />
 					</td>
 				</tr>
-				<tr valign="top"><th scope="row"><?php _e( 'Featured Homepage Post ID', 'editer' ); ?></th>
-					<td>
-						<input id="editer_theme_options[featured_post_id]" class="regular-text" type="text" name="editer_theme_options[featured_post_id]" value="<?php esc_attr_e( $options['featured_post_id'] ); ?>" />
-					</td>
-				</tr>
-
 			</table>
-
 			<p class="submit">
 				<input type="submit" class="button-primary" value="<?php _e( 'Save Options', 'editer' ); ?>" />
 			</p>
@@ -67,10 +60,6 @@ function theme_options_do_page() {
  * Sanitize and validate input. Accepts an array, return a sanitized array.
  */
 function theme_options_validate( $input ) {
-	
 	$input['hts_category_id'] = wp_filter_nohtml_kses( $input['hts_category_id'] );
-	$input['featured_post_id'] = wp_filter_nohtml_kses( $input['featured_post_id'] );
-
-
 	return $input;
 }

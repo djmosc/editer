@@ -96,8 +96,8 @@ class Shop extends WP_Widget {
                 $category = get_top_level_category($categories[0]->term_id, 'shop_category');
                 $thumbnail_size = 'thumbnail';
                 $image_id = get_post_thumbnail_id(get_the_ID());
-                if($size == 'large'){
-                    $image_id = get_field('large_image');
+                if( $size == 'large'){
+                    if( get_field('large_image') ) $image_id = get_field('large_image');
                     $thumbnail_size = 'large';
                 }
                 $image = wp_get_attachment_image_src( $image_id, $thumbnail_size );
@@ -148,11 +148,7 @@ class Shop extends WP_Widget {
                         </a>
                     </div>
                     <div class="post-meta">
-                        <?php if($size == 'small'): ?>
                         <h3 class="title didot-italic text-center uppercase"><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-                        <?php else: ?>
-                        <h1 class="title didot-italic text-center uppercase"><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
-                        <?php endif; ?>
                         <p class="excerpt arial small text-center avenir dark-grey"><?php echo get_the_excerpt(); ?></p>
                     </div>
                     <footer class="footer">
@@ -243,13 +239,9 @@ class Shop extends WP_Widget {
                         </a>
                     </div>
                     <div class="post-meta">
-                        <?php //get_template_part( 'inc/category'); ?>
-                        <?php if($size == 'small'): ?>
+                        <?php get_template_part( 'inc/shop-category'); ?>
                         <hr />
                         <h4 class="title text-center uppercase"><a href="<?php the_permalink();?>"><?php the_title();?></a></h4>
-                        <?php else: ?>
-                        <h1 class="title text-center uppercase"><a href="<?php the_permalink();?>"><?php the_title();?></a></h1>
-                        <?php endif; ?>
                         <p class="excerpt arial small text-center avenir dark-grey"><?php echo get_the_excerpt(); ?></p>
                     </div>
                     <footer class="footer <?php echo ($size == 'small') ? 'border-top' : 'striped-border top'?>">

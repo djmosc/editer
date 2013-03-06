@@ -13,11 +13,11 @@
 
 get_header(); ?>
 
-<section id="single-editor" class="content-area">
-	<div id="editor-sidebar" class="widget-area five column alpha">
+<section id="single-editor" class="content-area clearfix">
+	<div id="editor-sidebar" class="widget-area span two column alpha">
 		<?php dynamic_sidebar( 'editor' ); ?>
 	</div>
-	<div id="content" class="eleven column push-one alpha omega">
+	<div id="content" class="eleven span five alpha omega">
 	
 		<?php while ( have_posts() ) : the_post(); ?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -100,7 +100,7 @@ get_header(); ?>
 		<?php endwhile; // end of the loop. ?>
 
 	</div><!-- #content .site-content -->
-</section><!-- #single-editor .content-area -->
 
-<?php get_sidebar(); ?>
+	<?php get_sidebar(); ?>
+</section><!-- #single-editor .content-area -->
 <?php get_footer(); ?>

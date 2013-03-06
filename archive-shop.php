@@ -11,16 +11,27 @@
  * @package editer
  * @since editer 1.0
  */
-function load_masonary() {
-	wp_enqueue_script('masonary');
-}
 get_header();
-add_action('wp_enqueue_scripts', 'load_masonary');
 ?>
 <section id="archive-shop">
 	<div id="content" class="clearfix">
-			<?php dynamic_sidebar( 'shop_content' ); ?>
+		<?php dynamic_sidebar( 'shop_content' ); ?>
 	</div><!-- #content -->
 </section><!-- #front-page -->
 
+<script>
+	$(function(){
+		var container = $('#archive-shop #content');
+		container.imagesLoaded(function(){
+			container.masonry({
+				itemSelector: '.widget',
+				columnWidth: function(containerWidth){
+					return containerWidth / 4;
+				},
+			    isAnimated: !Modernizr.csstransitions,
+				isResizable: false
+			});
+		});
+	});
+</script>
 <?php get_footer(); ?>

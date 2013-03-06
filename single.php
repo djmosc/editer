@@ -13,9 +13,9 @@ get_header(); ?>
 	<?php if(have_posts()) : ?>
 	<?php while ( have_posts() ) : the_post(); ?>
 
-		<?php if(!in_category(get_editer_option('hts_category_id'))) : ?>
-		<article id="post-<?php the_ID(); ?>" <?php post_class(get_field( 'post_format' )); ?>>
-			<?php if ( get_field( 'post_format' ) == 'gallery') : ?>
+		<?php $post_format = (get_field( 'post_format' )) ? get_field( 'post_format' ) : 'standard'; ?>
+		<article id="post-<?php the_ID(); ?>" <?php post_class($post_format); ?>>
+			<?php if ( $post_format == 'gallery') : ?>
 			<?php $gallery_id = (get_field('gallery', $post->ID)) ? get_field('gallery', $post->ID)->ID : $post->ID; ?>
 			<header class="post-header">
 				<?php $args = array( 
@@ -79,7 +79,7 @@ get_header(); ?>
 			
 			<div class="content clearfix">
 				<div class="inner">
-					<?php if ( get_field( 'post_format' ) != 'gallery') : ?>
+					<?php if ( $post_format != 'gallery') : ?>
 					<div class="post-meta shadow">
 						<?php get_template_part( 'inc/category'); ?>
 				    	<h1 class="title text-center"><?php the_title(); ?></h1>
@@ -142,67 +142,6 @@ get_header(); ?>
 			</div>
 		</div>
 
-		<?php else: ?>
-
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<header class="post-header">
-				<div class="inner clearfix">
-					<div class="span seven image omega">
-						<div class="featured-image">
-							<?php 
-		        			$image_id = get_post_meta($post->ID, 'homepage_image_id', true); 
-							if(!$image_id) $image_id = get_post_thumbnail_id($post->ID);
-		        			$image = wp_get_attachment_image_src($image_id, array(550, 999), array('class' => 'scale'));
-		        			?>
-		        			<img src="<?php echo $image[0]; ?>" class="scale" />
-						</div>
-					</div>
-					<div class="span three content">
-						<header class="header">
-							<?php
-							$image_id = get_field('image_id', 'category_'.get_editer_option('hts_category_id'));
-							if($image_id):
-								$image = wp_get_attachment_image_src($image_id, 'full');
-							?>
-							<h3 class="category-image">
-								<a href="<?php echo get_category_link( get_editer_option('hts_category_id') ); ?>">
-									<img src="<?php echo $image[0]; ?>" class="scale" />
-								</a>
-							</h3>
-							<?php endif; ?>
-						</header>
-						<div class="post-meta">
-							<p class="excerpt dark-grey small arial text-center"><?php echo get_the_excerpt(); ?></p>
-						</div>
-
-						<div class="striped-border top bottom navigation">
-							<div class="inner">
-								<?php $prev_post = get_the_adjacent_fukn_post('previous', 'post', array(get_editer_option('hts_category_id')));?>
-								<a href="<?php echo get_permalink($prev_post->ID);?>" class="prev-btn"></a>
-								<?php $next_post = get_the_adjacent_fukn_post('next', 'post', array(get_editer_option('hts_category_id'))); ?>
-								<a href="<?php echo get_permalink($next_post->ID);?>" class="next-btn"></a>
-								<h5 class="text-center novecento-bold uppercase"><a href="<?php echo get_category_link(get_editer_option('hts_category_id'));?>" class="light-grey"><?php _e('View All'); ?></a></h5>
-							</div>
-						</div>
-					</div>
-				</div>
-			</header><!-- .post-header -->
-			
-			<div class="post-content clearfix">
-				<?php the_content(); ?>
-			</div><!-- .entry-content -->
-			<footer class="footer clearfix small">
-				<div class="span three omega share push-seven">	
-					<?php $size = 'small'; ?>
-					<?php get_template_part('inc/share-links'); ?>
-				</div>	
-			</footer>
-		</article><!-- #post-<?php the_ID(); ?> -->
-		
-		<?php get_template_part('inc/street-chics'); ?>
-
-
-		<?php endif; ?>
 		<div class="clearfix"></div>
 		<footer class="single-footer ">
 			<?php get_template_part('inc/category-posts'); ?>

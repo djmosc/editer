@@ -16,7 +16,7 @@
 
 get_header(); ?>
 
-<section id="template-competition" class="column eightteen omega alpha">
+<section id="template-competition" class="span seven-and-half omega alpha">
 	<div id="content">	
 		<?php while ( have_posts() ) : the_post(); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -62,7 +62,6 @@ get_header(); ?>
 		<?php endwhile; // end of the loop. ?>
 
 	</div><!-- #content .site-content -->
+	<?php get_sidebar(); ?>
 </section><!-- #template-striped-border .content-area -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

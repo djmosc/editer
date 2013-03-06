@@ -27,24 +27,27 @@
 	</script>
     <?php
 
-    function remove_jquery() {
-		if ( ! is_admin() ) {
-	        wp_deregister_script('jquery');
-	        wp_register_script('jquery', '', FALSE, '1.9.1');
-	        wp_enqueue_script('jquery');
-	    }
-	}
-	add_action('template_redirect', 'remove_jquery');
+	if ( ! is_admin() ) {
+        wp_deregister_script('jquery');
+        wp_register_script('jquery', get_template_directory_uri().'/js/libs/jquery.min.js', false, '1.9.1');
+        wp_enqueue_script('jquery');
+    }
 	
 	function load_js() {
 		wp_enqueue_script('modernizr', get_template_directory_uri().'/js/libs/modernizr.min.js');
 		wp_enqueue_script('jquery', get_template_directory_uri().'/js/libs/jquery.min.js');
-		wp_enqueue_script('easing', get_template_directory_uri().'/js/plugins/jquery.easing.js', array('jquery'));
-		wp_enqueue_script('scroller', get_template_directory_uri().'/js/plugins/jquery.scroller.js', array('jquery'));
-		wp_enqueue_script('main', get_template_directory_uri().'/js/main.js', array('jquery'));
-		wp_register_script('masonary', get_template_directory_uri().'/js/plugins/jquery.masonary.min.js', array('jquery'));
+		wp_enqueue_script('easing', get_template_directory_uri().'/js/plugins/jquery.easing.js', array('jquery'), '', true);
+		wp_enqueue_script('scroller', get_template_directory_uri().'/js/plugins/jquery.scroller.js', array('jquery'), '', true);
+		wp_enqueue_script('imagesloaded', get_template_directory_uri().'/js/plugins/jquery.imagesloaded.min.js', array('jquery'), '', true);
+		wp_enqueue_script('masonry', get_template_directory_uri().'/js/plugins/jquery.masonry.js', array('jquery'), '', true);
+		
+		// if(is_post_type_archive('shop')){
+		// }
 
-		//wp_enqueue_script('masonary');
+		if(is_page_template('template-instagram.php')){
+			wp_enqueue_script('instagram', get_template_directory_uri().'/js/plugins/jquery.instagram.js', array('jquery'), '', true);
+		}
+		wp_enqueue_script('main', get_template_directory_uri().'/js/main.js', array('jquery'), '', true);
 	}
 	add_action('wp_enqueue_scripts', 'load_js');
 	?>

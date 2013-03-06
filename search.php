@@ -8,12 +8,12 @@
 
 get_header(); ?>
 
-<section id="search" class="column eightteen alpha omega">
-	<div id="content">
+<section id="search" >
+	<div id="content" class="span seven-and-half alpha">
 		<header class="search-header striped-border top left right bottom">
 			<div class="inner white-bg clearfix ">
-				<div class="column two push-three"><h4 class="red didot-italic no-margin"><?php _e('search') ?></h4></div>
-				<div class="column eight"><?php get_search_form(); ?></div>
+				<div class="span one push-three"><h4 class="red didot-italic no-margin"><?php _e('search') ?></h4></div>
+				<div class="span four"><?php get_search_form(); ?></div>
 			</div>
 		</header><!-- .search-header -->
 
@@ -21,10 +21,11 @@ get_header(); ?>
 		<div class="thick-border-bottom">
 			<h5 class="novecento-bold text-center small"><?php _e('Search Results'); ?></h5>
 		</div>
-		<?php wp_simple_pagination(); ?>	
+		<?php if(function_exists('wp_paginate')) wp_paginate(); ?>
+		 	
 		<div id="posts">
 			<?php while ( have_posts() ) : the_post(); ?>
-			<div <?php post_class('dotted-border-bottom'); ?>>
+			<div <?php post_class('dotted-border-bottom post'); ?>>
 				<header class="post-header">
 					<h3 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 					<p class="post-meta arial small black">
@@ -40,7 +41,7 @@ get_header(); ?>
 			<?php endwhile; ?>
 
 		</div>
-		<?php wp_simple_pagination(); ?>	
+		<?php if(function_exists('wp_paginate')) wp_paginate(); ?>
 		
 		<?php else : ?>
 
@@ -49,7 +50,7 @@ get_header(); ?>
 		<?php endif; ?>
 
 	</div><!-- #content -->
+	<?php get_sidebar(); ?>
 </section><!-- #search -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

@@ -1,9 +1,8 @@
-$(window).load(function(){
-	onResize();
-});
+(function($){
+	$(window).load(function(){
+		onResize();
+	});
 
-$(function(){
-	
 	$('.scroller').each(function(){
 		var scroller = $(this);
 		var options = {};
@@ -22,7 +21,7 @@ $(function(){
 	$('a[href^=#].scroll-to-btn').click(function(){
 		var target = $($(this).attr('href'));
 		var offsetTop = (target.length != 0) ? target.offset().top : 0;
-		$('body, html').animate({scrollTop: offsetTop}, 500, 'easeInOutQuad');
+		//$('body, html').animate({scrollTop: offsetTop}, 500, 'easeInOutQuad');
 		return false;
 	});
 
@@ -31,7 +30,6 @@ $(function(){
 	}, function(){
 		$('.overlay', this).fadeOut();
 	});
-	
 	
 	$('.lightbox-overlay, .lightbox .close-btn').on('click', function(){
 		$('.lightbox').fadeOut(function(){
@@ -106,44 +104,8 @@ $(function(){
 		});
 	}
 
-	if($('.equal-height').length !== 0){
-		
-		var currTallest = 0,
-		currRowStart = 0,
-		rowDivs = new Array(),
-		topPos = 0;
+	equalHeight();
 
-		$('.equal-height').each(function() {
-
-			var element = $(this);
-			topPos = element.position().top;
-
-			if (currRowStart != topPos) {
-
-				// we just came to a new row.  Set all the heights on the completed row
-				for (i = 0 ; i < rowDivs.length ; i++) {
-					rowDivs[currentDiv].height(currTallest);
-				}
-
-				rowDivs.length = 0;
-				currRowStart = topPos;
-				currTallest = element.height();
-				rowDivs.push(element);
-
-			} else {
-
-			// another div on the current row.  Add it to the list and check if it's taller
-			rowDivs.push(element);
-				currTallest = (currTallest < element.height()) ? (element.height()) : (currTallest);
-			}
-
-			// do the last row
-			for (i = 0 ; i < rowDivs.length ; i++) {
-				rowDivs[i].height(currTallest);
-			}
-
-		});
-	}
 	var editors = $('#editors');
 	$('.category-navigation a', editors).on('click', function(e){
 		e.preventDefault();
@@ -166,50 +128,87 @@ $(function(){
 		onResize();					  
 	});
 	onResize();	
-});
 
-$.fn.preload = function() {
-    this.each(function(){
-        $('<img/>')[0].src = themeUrl + this;
-    });
-}
+	$.fn.preload = function() {
+	    this.each(function(){
+	        $('<img/>')[0].src = themeUrl + this;
+	    });
+	}
 
-function loadPopup(url){
-	
-	$('.lightbox-overlay').fadeIn('slow', function(){
-		$('html,body').animate({scrollTop: $('.lightbox-overlay').offset().top}, 800, 'easeInOutQuad');
-		$('.lightbox').html('<div class="loader align-center"><img src="'+themeUrl+'/images/misc/ajax_loader.gif" /></div>');
-		$('.lightbox').delay(100).fadeIn();
-		$.get(url, function(data) {
-			$('.lightbox').fadeOut(function(){
-				$('.lightbox')
-					.html(data)
-					.delay(200)
-					.fadeIn();
+	function loadPopup(url){
+		
+		$('.lightbox-overlay').fadeIn('slow', function(){
+			$('html,body').animate({scrollTop: $('.lightbox-overlay').offset().top}, 800, 'easeInOutQuad');
+			$('.lightbox').html('<div class="loader align-center"><img src="'+themeUrl+'/images/misc/ajax_loader.gif" /></div>');
+			$('.lightbox').delay(100).fadeIn();
+			$.get(url, function(data) {
+				$('.lightbox').fadeOut(function(){
+					$('.lightbox')
+						.html(data)
+						.delay(200)
+						.fadeIn();
+				});
+				
 			});
-			
+		});		
+	}
+
+	function onResize(){
+		// var windowHeight = $(window).height();
+		// var windowWidth = $(window).width();
+		// var docHeight = $(document).height();
+		// var docWidth = $(document).width();
+		//$('.lightbox').css({'top': ($('.lightbox').parent().height() - $('.lightbox').height() )/ 2 });
+
+		var homepageScroller = $('#homepage-scroller');
+		var windowWidth = $(window).width();
+		if(homepageScroller.length){
+			var homepageScrollerWidth = homepageScroller.width(),
+				scrollItemWidth = Math.round(homepageScrollerWidth - ((homepageScrollerWidth * 0.124) * 2)),
+				marginLeft = Math.round(scrollItemWidth  -  (homepageScrollerWidth * 0.124));
+				scrollItems = $('.scroll-item', homepageScroller);
+
+			$('.scroll-items-container', homepageScroller).css({'margin-left': -marginLeft});
+			scrollItems.width(scrollItemWidth);
+			//homepageScroller.height(setScrollItemsHeight);
+		}
+	}	
+})(jQuery);
+
+
+function equalHeight(){
+	if($('.equal-height').length !== 0){
+		
+		var currTallest = 0,
+		currRowStart = 0,
+		rowDivs = new Array(),
+		topPos = 0;
+
+		$('.equal-height').each(function() {
+
+			var element = $(this);
+			topPos = element.position().top;
+			if (currRowStart != topPos) {
+
+				for (i = 0 ; i < rowDivs.length ; i++) {
+					rowDivs[i].height(currTallest);
+				}
+
+				rowDivs.length = 0;
+				currRowStart = topPos;
+				currTallest = element.height();
+				rowDivs.push(element);
+
+			} else {
+				rowDivs.push(element);
+				currTallest = (currTallest < element.height()) ? (element.height()) : (currTallest);
+			}
+
+			for (i = 0 ; i < rowDivs.length ; i++) {
+				rowDivs[i].height(currTallest);
+			}
+
 		});
-	});		
-}
-
-function onResize(){
-	// var windowHeight = $(window).height();
-	// var windowWidth = $(window).width();
-	// var docHeight = $(document).height();
-	// var docWidth = $(document).width();
-	//$('.lightbox').css({'top': ($('.lightbox').parent().height() - $('.lightbox').height() )/ 2 });
-
-	var homepageScroller = $('#homepage-scroller');
-	var windowWidth = $(window).width();
-	if(homepageScroller.length){
-		var homepageScrollerWidth = homepageScroller.width(),
-			scrollItemWidth = Math.round(homepageScrollerWidth - ((homepageScrollerWidth * 0.124) * 2)),
-			marginLeft = Math.round(scrollItemWidth  -  (homepageScrollerWidth * 0.124));
-			scrollItems = $('.scroll-item', homepageScroller);
-
-		$('.scroll-items-container', homepageScroller).css({'margin-left': -marginLeft});
-		scrollItems.width(scrollItemWidth);
-		//homepageScroller.height(setScrollItemsHeight);
 	}
 }
 
@@ -239,7 +238,6 @@ function onEditorChange(scroller, nextItem){
 		pagination.animate({left: left}, 500, 'easeInOutQuad');
 	}
 }
-
 if (!(window.console && console.log)) {
     (function() {
         var noop = function() {};

@@ -13,11 +13,11 @@
  */
 
 get_header(); ?>
-<div id="index" class="column eightteen alpha omega">
-	<div id="index-sidebar" class="widget-area five column alpha">
+<div id="index" class="clearfix">
+	<div id="index-sidebar" class="widget-area two span alpha">
 		<?php dynamic_sidebar( 'index' ); ?>
 	</div>
-	<div id="content" class="twelve column push-one alpha omega">
+	<div id="content" class="span five">
 	
 		<h3>
 		<?php 
@@ -40,6 +40,7 @@ get_header(); ?>
 			<?php 
 				global $wp_query;
 				query_posts(array_merge( $wp_query->query_vars, array('posts_per_page' => 20)));
+				$month_check = '';
 			?>
 			<div class="posts list hide" data-display-type="list">
 				<?php $i = 0; ?>
@@ -67,7 +68,7 @@ get_header(); ?>
 				</ul>
 			</div>
 			<div class="posts grid" data-display-type="grid">
-				<?php $columns = array('one', 'two', 'three'); ?>
+				<?php $columns = array('first', 'second', 'third'); ?>
 				<?php $i = 0; ?>
 				<?php if(have_posts()) : while ( have_posts() ) : the_post(); ?>
 					<?php
@@ -79,12 +80,12 @@ get_header(); ?>
 					}
 					$month_check = $month;
 					?>
-					<li class="post left <?php echo $columns[$i % 3];?>">
+					<li class="post span <?php echo $columns[$i % 3];?>">
 						<a href="<?php the_permalink(); ?>" class="overlay-btn">
 							<div class="overlay semi-black-bg">
 								<h5 class="title didot-italic text-center white"><?php the_title(); ?></h5>
 							</div>
-							<?php the_post_thumbnail(array('168', '999')); ?>
+							<?php the_post_thumbnail(array('168', '999'), array('class' => 'scale')); ?>
 						</a>
 					</li>
 					<?php $i++; ?>
@@ -92,7 +93,7 @@ get_header(); ?>
 					<?php endif; ?>	
 				</ul>
 			</div>
-			<?php wp_simple_pagination(); ?>
+			<?php if(function_exists('wp_paginate')) wp_paginate(); ?>
 			<?php wp_reset_query(); // reset the query ?>
 		</div> <!-- END .all -->
 			<footer class="dotted-border">
@@ -104,7 +105,6 @@ get_header(); ?>
 			</footer>
 			
 	</div> <!-- End Content -->
-
+	<?php get_sidebar(); ?>
 </div><!-- #index -->
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

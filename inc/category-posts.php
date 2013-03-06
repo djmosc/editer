@@ -6,7 +6,7 @@ if ( $custom_query->have_posts() ) :
 ?>
 <div class="category-posts">
 	<header class="category-posts-header thick-border-bottom">
-        <h5 class="black uppercase novecento-bold small title text-center">More in <a href="<?php echo get_category_link($category->term_id);?>" class="red"><?php echo $category->cat_name; ?></a></h5>
+        <h5 class="black uppercase novecento-bold small title text-center">More in <a href="<?php echo get_category_link($category->term_id);?>" class="red"><?php echo $category->name; ?></a></h5>
         <a href="<?php echo get_category_link($category->term_id);?>" class="black-btn see-all-btn"><?php _e("See All", 'editer'); ?></a>
     </header>
 	<!-- <p class="align-right no-margin arial small"><a href="<?php echo get_category_link($category->term_id);?>" class="red">show all in <span class="uppercase"><?php echo $category->cat_name; ?></span> &raquo;</a></p> -->

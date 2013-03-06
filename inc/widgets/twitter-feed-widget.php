@@ -31,7 +31,7 @@ class Twitter_Feed extends WP_Widget {
 		echo '<h5 class="text-center uppercase novecento-bold small widget-title border-bottom"><a href="http://twitter.com/'.$args['username'].'" target="_blank" class="black">' . $args['title'] . '</a></h5>';
 		?>
         <script>
-        	$(function(){
+        	(function($){
         		var url='http://api.twitter.com/1/statuses/user_timeline.json?count=4&screen_name=<?php echo $args['username']; ?>&callback=?';
 				$.getJSON(url,function(tweets){
 
@@ -55,7 +55,7 @@ class Twitter_Feed extends WP_Widget {
 
 					$("#twitter-feed").html(output.join(''));
 				});
-        	});
+        	})(jQuery);
 
 			function relative_time(timeValue) {
 				var values = timeValue.split(" ");

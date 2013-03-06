@@ -216,6 +216,7 @@ function editer_setup() {
 			'publicly_queryable' => false,
     		'has_archive' => true, 
     		'hierarchical' => false,
+    		'exclude_from_search' => true,
     		'menu_position' => null,
     		'supports' => array('title', 'editor')
    		)
@@ -378,7 +379,7 @@ if ( ! function_exists( 'get_sub_category' )) {
 			}
 		}
 
-		return $category;
+		return (isset($category)) ? $category : null;
 	}
 }
 
