@@ -22,8 +22,6 @@ class Related_Posts extends WP_Widget {
 	function widget($args, $instance) {
 		global $post;
 		$args['title'] = $instance['title'];
-		echo $args['before_widget'] . '<h5 class="thick-border-bottom black uppercase novecento-bold small title text-center">' . $args['title'] . '</h5>';
-		
 		$tags = wp_get_post_tags($post->ID);  
 		if ($tags) {  
 			$tag_ids = array();  
@@ -31,6 +29,7 @@ class Related_Posts extends WP_Widget {
 				$tag_ids[] = $individual_tag->term_id;
 			}
 		}
+
 		if(isset($tags_ids)){
 			$args = array(  
 				'tag__in' => $tag_ids,  
@@ -44,6 +43,7 @@ class Related_Posts extends WP_Widget {
 
 		<?php if ( $custom_query->have_posts() ) : ?>
         <?php
+        echo $args['before_widget'] . '<h5 class="thick-border-bottom black uppercase novecento-bold small title text-center">' . $args['title'] . '</h5>';
         $i = 0;
         while ( $custom_query->have_posts() ) : $custom_query->the_post(); 
         ?>
@@ -70,10 +70,7 @@ class Related_Posts extends WP_Widget {
         endwhile;
         wp_reset_query();
 		wp_reset_postdata();
-        else:
-        ?>
-        <p>No posts found</p>
-        <?php endif; ?>
+        endif; ?>
 <?php 	echo $args['after_widget'];
 	}
 }

@@ -27,7 +27,7 @@ get_header(); ?>
 			</div><!-- .entry-content -->
 			<footer class="error-footer dotted-border top bottom">
 				<div class="inner">
-					<p class="small uppercase arial text-center"><?php _e('Back to home', 'editer'); ?></p>
+					<p class="small uppercase arial text-center"><a href="<?php blog_info('url'); ?>"><?php _e('Back to home', 'editer'); ?></a></p>
 				</div>
 			</footer>
 		</article><!-- #post-0 .post .error404 .not-found -->

@@ -58,7 +58,7 @@ class Tumblr extends WP_Widget {
     	?>
 	    </div>
 		<p class="text-right no-margin">
-			<a href="http://editerdotcom.tumblr.com/" target="_blank" class="black-btn"><?php _e("Read More", 'editer'); ?> &raquo;</a>
+			<a href="http://editerdotcom.tumblr.com/" target="_blank" class="black-btn"><?php _e("Read More", 'editer'); ?></a>
 		</p>
 		<?php echo $args['after_widget'];
 	}

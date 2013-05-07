@@ -25,7 +25,7 @@ class Custom_Post_Type
 		}
 		
 		/* Method which registers the post type */
-		public function register_post_type()
+		public function register_post_type()	
 		{		
 			//Capitilize the words and make it plural
 			$name 		= ucwords( str_replace( '_', ' ', $this->post_type_name ) );

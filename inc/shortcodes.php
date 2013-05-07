@@ -71,7 +71,7 @@ function gallery_handler( $atts ) {
 					$total_columns = count($columns);
 					$i = 0;
 					foreach ( $attachments as $attachment ) {
-						$output .= '<li class="step '.$columns[$i % $total_columns].'">';
+						$output .= '<li class="span five step '.$columns[$i % $total_columns].'">';
 						$output .= '<div class="thumbnail">';
 						$image = wp_get_attachment_image_src( $attachment->ID, 'large' );
 						$output .= '<a href="'.$image[0].'" class="fancybox" rel="how_to" title="'.$attachment->post_content.'">';
@@ -80,10 +80,10 @@ function gallery_handler( $atts ) {
 						$output .= '</a>';
 						$output .= '</div>';
 						$output .= '<div class="product-meta clearfix">';
-						$output .= '<span class="number didot-italic">';
+						$output .= '<span class="span two number didot-italic">';
 						$output .= $i + 1;
 						$output .= '</span>';
-						$output .= '<div class="description">';
+						$output .= '<div class="span eight description">';
 						$output .=  apply_filters('the_content', $attachment->post_content);
 						$output .= '</div>';
 						$output .= '</div>';

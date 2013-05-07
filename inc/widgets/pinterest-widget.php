@@ -32,7 +32,7 @@ class Pinterest extends WP_Widget {
 		
 		$args['username'] = (isset($instance['username'])) ? $instance['username'] : 'editerdotcom';
 		$data = file_get_contents('http://pinterestapi.co.uk/'.$args['username'].'/pins');
-		$json = json_decode($data);
+		$json = (isset($data)) ? json_decode($data) : null;
 		if(!empty($json)) :
 			$pins = array_slice($json->body, 0, 1);
 			if(!empty($pins)):
@@ -43,7 +43,7 @@ class Pinterest extends WP_Widget {
 		    	<ul>
 				<?php foreach($pins as $pin): ?>
 					<li class="pin">
-						<a href="<?php echo $pin->href; ?>">
+						<a href="<?php echo $pin->href; ?>" target="_blank">
 							<img src="<?php echo $pin->src ?>" class="scale" />
 						</a>
 					</li>

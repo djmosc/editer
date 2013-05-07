@@ -726,10 +726,9 @@ blockquote {
 .post-category {
 	text-align: center;
 	display: block;
-	letter-spacing: 1px;
 	font-size: 10px;
 	z-index: 300;
-	padding: 3px 0;
+	padding: 10px 0 3px 0;
 	line-height: 16px;
 }
 
@@ -961,10 +960,8 @@ blockquote {
 
 		li {
 			list-style: none;
-			float: left;
-			width: 371px;
 			padding: 0 5px 20px 5px;
-			height: 320px;
+			height: 340px;
 			&.one {
 				padding-left: 0;
 			}
@@ -987,15 +984,11 @@ blockquote {
 				.number {
 					font-size: 50px;
 					display: block;
-					float: left;
 					color: #9b9b9b;
-					width: 50px;
 					text-align: center;
 				}
 				.description {
-					float: left;
-					width: 320px;
-					padding: 5px 0 0 0;
+					padding: 5px 20px 0 0;
 					p {
 						@extend .small;
 						@extend .arial;
@@ -1197,6 +1190,8 @@ blockquote {
 }
 
 .widget_post {
+	margin-bottom: 30px;
+	
 	.post {
 
 		&.featured {
@@ -1228,11 +1223,22 @@ blockquote {
 		}
 
 		&.large {
+
+			.post-meta {
+				margin: 0 10%;
+			}
 			.footer {
 				> .inner {
 					padding-top: 10px;
 					padding-bottom: 12px;
 				}
+			}
+		}
+
+		.footer {
+			.date {
+				position: relative;
+				top: 3px;
 			}
 		}
 	}
@@ -1630,7 +1636,7 @@ blockquote {
 		}
 
 		.footer {
-			margin-bottom: 20px;
+			margin-bottom: 12px;
 		}
 	}
 }
@@ -1991,11 +1997,11 @@ $total_columns: length($columns);
 
 @include columns();
 
-.left, .alignleft {
+.left {
 	float: left;
 }
 
-.right, .alignright {
+.right {
 	float: right;
 }
 

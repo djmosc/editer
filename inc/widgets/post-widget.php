@@ -105,14 +105,14 @@ class Post extends WP_Widget {
                         <?php endif; ?>
                         <p class="excerpt arial small text-center avenir dark-grey"><?php echo get_the_excerpt(); ?></p>
                         <?php if($editor): ?>
-                        <p class="author didot-italic small text-center grey"><?php _e("With", 'editer'); ?> <a href="<?php echo get_permalink($editor->ID); ?>" class="dark-grey"><?php the_author(); ?></a></p>
+                        <p class="author didot-italic small text-center grey"><?php _e("with", 'editer'); ?> <a href="<?php echo get_permalink($editor->ID); ?>" class="dark-grey"><?php the_author(); ?></a></p>
                         <?php endif; ?>
                     </div>
                     <footer class="footer <?php echo ($size == 'small') ? 'border-top' : 'striped-border top'?>">
                         <div class="inner clearfix">
                             <div class="span five alpha omega">
                                 <?php if(!$args['featured']): ?>
-                                <span class="tiny light-grey text-center"><?php the_time(get_option('date_format')); ?></span>
+                                <span class="tiny light-grey text-center date"><?php the_time(get_option('date_format')); ?></span>
                                <?php endif; ?>
                             </div>
                             <div class="span five alpha omega">
